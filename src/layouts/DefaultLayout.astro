@@ -3,9 +3,12 @@ interface Props {
   canonical?: string;
 }
 
-import '../styles/vars.css';
-import '../styles/global.css';
+import "../styles/fonts.css";
+import "../styles/vars.css";
+import "../styles/global.css";
 import { yearsInIndustry } from "../util/yearsInIndustry";
+
+import ThemeToggleButton from "../components/ThemeToggleButton.astro";
 
 const title = import.meta.env.PUBLIC_SITE_NAME;
 const desc = `Software engineer, passionate about solving problems with code. Over ${yearsInIndustry()} years of industry experience specialising in JavaScript, React & Node.`;
@@ -31,19 +34,24 @@ const canonical = Astro.props.canonical || undefined;
     <meta property="og:url" content={site_url + (canonical || "")} />
     <meta property="og:image" content={site_url + "og-image.jpg"} />
 
-    <!-- Analytics -->
-    <script defer data-domain={site_domain} src={`https://analytics.${site_domain}/js/plausible.js`}></script>
-
+    <!-- Initially set theme -->
     <script is:inline>
       (function() {
         const theme = localStorage.getItem("theme") || "dark";
-        window.theme = theme;
         document.documentElement.classList.add(theme);
+        window.theme = theme;
       })();
     </script>
+
+    <!-- Analytics -->
+    <script defer data-domain={site_domain} src={`https://analytics.${site_domain}/js/plausible.js`}></script>
   </head>
   <body class="page">
+    <!-- Sounds -->
+    <audio src="/sounds/switch.mp3" id="sound_switch" preload="auto" hidden></audio>
+
     <!-- Header -->
+    <ThemeToggleButton />
     <main>
       <slot />
     </main>

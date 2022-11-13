@@ -6,14 +6,63 @@ import { yearsInIndustry } from "../util/yearsInIndustry";
 <DefaultLayout>
   <section class="container max-w-6xl pt-4">
     <h1>
-      <span class="font-ibm-plex-mono text-blue-600 dark:text-mint font-semibold">Welcome, my name is <br></span>
-      <span class="text-swipe-animation inline-block dark:text-silver-100 text-silver-900 font-black sm:text-7xl text-5xl overflow-hidden">Luke Liasi.</span>
+      <span class="intro-welcome">Welcome, my name is <br></span>
+      <span class="intro-name">Luke Liasi.</span>
     </h1>
-    <h2 class="dark:text-silver-400 text-silver-800 sm:text-6xl text-4xl font-bold">I build compelling <br class="sm:block hidden" />digital experiences.</h2>
-    <p class="dark:text-silver-400 text-silver-900 text-lg leading-6 mt-4">Software engineer, passionate about solving problems with code.<br class="sm:block hidden" />Over {yearsInIndustry()} years of industry experience specialising in JavaScript, React & Node.</p>
+    <h2 class="intro">I build compelling <br class="sm:block hidden" />digital experiences.</h2>
+    <p class="desc">Software engineer, passionate about solving problems with code.<br class="breakspace" />Over {yearsInIndustry()} years of industry experience specialising in JavaScript, React & Node.</p>
     <div class="wave-container"></div>
   </section>
 </DefaultLayout>
+
+<style lang="scss">
+  h1 {
+    line-height: 2.75rem;
+    margin: 1rem 0;
+  }
+
+  .intro-welcome {
+    font-family: var(--font-family-IBM-Plex-Mono);
+    font-weight: 600;
+    font-size: var(--font-size-base);
+  }
+
+  .intro-name {
+    color: #e1e4e9;
+    font-family: var(--font-family-Mukta);
+    font-size: var(--font-size-14xl);
+  }
+
+  .intro {
+    color: #9ba6b4;
+    font-size: var(--font-size-11xl);
+    line-height: 3.25rem;
+    margin: 1rem 0;
+  }
+
+  .desc {
+    font-size: var(--font-size-lg);
+    color: #9ba6b4;
+  }
+
+  .breakspace {
+
+  }
+
+  // Dark mode
+  html.dark {
+    .intro-welcome {
+      color: var(--color-mint);
+    }
+  }
+
+  // Light mode
+  html.light {
+    .intro-welcome {
+      color: var(--color-blue-600);
+    }
+  }
+</style>
 
 <script hoist>
   import "../js/wave.js";
