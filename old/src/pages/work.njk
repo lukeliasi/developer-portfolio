@@ -1,0 +1,15 @@
+---
+layout: layout.njk
+canonical: /work
+data: work
+eleventyNavigation:
+  title: Work
+  order: 1
+---
+
+<h1>{{ title }}</h1>
+<ul>
+{%- for item in work -%}
+  <li>{{ item.title }} - {{ item.desc }}</li>
+{%- endfor -%}
+</ul>

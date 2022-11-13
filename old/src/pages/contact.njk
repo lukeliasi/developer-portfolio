@@ -1,0 +1,85 @@
+---
+layout: layout.njk
+canonical: /contact
+eleventyNavigation:
+  title: Contact
+  order: 3
+---
+
+{% set socialIconClasses = "dark:text-orange-500 text-blue-500 dark:hover:text-orange-200 hover:text-blue-200 text-xl" %}
+
+<section class="container max-w-6xl pt-4">
+  {% mainPageHeading { text: "Contact me" } %}
+  <p class="dark:text-silver-400 text-silver-900 text-lg leading-6">You can find me on social media, or please fill in the form below to contact me.</p>
+
+  <div class="flex justify-between md:mt-12 mt-8 md:space-x-36 space-x-0 md:flex-row flex-col">
+    <section>
+      <p class="dark:text-silver-200 mb-4 text-xl">If you have a question or just want to say hi, I’ll get back to you as soon as I can!</p>
+
+      <div class="space-y-2 text-xl">
+        <div class="flex items-center">
+          {% socialIcon { icon: "github", link: "https://github.com/lukeliasi", classes: socialIconClasses } %}
+          <p class="ml-2 dark:text-silver-200">You can find my code on <a class="dark:text-orange-500 text-blue-500" href="https://github.com/lukeliasi" target="_blank">GitHub</a>.</p>
+        </div>
+
+        <div class="flex items-center">
+          {% socialIcon { icon: "twitter", link: "https://twitter.com/lukeliasi", classes: socialIconClasses } %}
+          <p class="ml-2 dark:text-silver-200">Follow me on <a class="dark:text-orange-500 text-blue-500" href="https://twitter.com/lukeliasi" target="_blank">Twitter @lukeliasi</a>.</p>
+        </div>
+
+        <div class="flex items-center">
+          {% socialIcon { icon: "linkedin", link: "https://www.linkedin.com/in/lukeliasi/", classes: socialIconClasses } %}
+          <p class="ml-2 dark:text-silver-200">View my <a class="dark:text-orange-500 text-blue-500" href="https://www.linkedin.com/in/lukeliasi/" target="_blank">LinkedIn profile</a>.</p>
+        </div>
+      </div>
+    </section>
+
+    <form id="contact-form" class="flex space-y-4 flex-col xl:-mt-6 mt-12">
+      <div class="flex space-x-4 w-full">
+        {% formInput { label: "Name", name: "name", required: false } %}
+        {% formInput { label: "Email", name: "email", required: false, type: "email" } %}
+      </div>
+
+      {% formInput { label: "Subject", name: "subject", required: false } %}
+      {% formTextarea { label: "Message", name: "message", required: true } %}
+
+      <button id="contact-form-submit-button" type="submit" class="disabled:opacity-75 inline-flex items-center justify-center border border-transparent dark:bg-mint-600 dark:hover:bg-mint-400 bg-blue-600 hover:bg-blue-400 dark:text-silver-900 text-silver-100 px-4 py-2 text-sm font-bold shadow-sm focus:outline-none focus:ring-2 focus:ring-mint-500 focus:ring-offset-2 md:w-1/2 w-full ml-auto">
+        <svg id="contact-form-submit-button-spinner" class="hidden mr-3 w-4 h-4 text-mint-800 animate-spin" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="#1fa768"/>
+          <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentColor"/>
+        </svg>
+        Send
+      </button>
+
+      <!-- Alert Success -->
+      <div class="hidden bg-mint-50 p-4" id="contact-form-alert-success">
+        <div class="flex">
+          <div class="flex-shrink-0">
+            <!-- Heroicon name: solid/check-circle -->
+            <svg class="h-5 w-5 text-mint-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+            </svg>
+          </div>
+          <div class="ml-3">
+            <p class="text-sm font-medium text-mint-800">Thank you, I've got your message and I will be in contact soon.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Alert Error -->
+      <div class="hidden bg-orange-50 p-4" id="contact-form-alert-error">
+        <div class="flex">
+          <div class="flex-shrink-0">
+            <!-- Heroicon name: solid/exclamation-circle -->
+            <svg class="h-5 w-5 text-orange-400"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+            </svg>
+          </div>
+          <div class="ml-3">
+            <p class="text-sm font-medium text-orange-800">There was an error, please try again.</p>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>

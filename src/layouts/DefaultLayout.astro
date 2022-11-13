@@ -1,0 +1,51 @@
+---
+interface Props {
+  canonical?: string;
+}
+
+import '../styles/global.css';
+import { yearsInIndustry } from "../util/yearsInIndustry";
+
+const title = import.meta.env.PUBLIC_SITE_NAME;
+const desc = `Software engineer, passionate about solving problems with code. Over ${yearsInIndustry()} years of industry experience specialising in JavaScript, React & Node.`;
+const site_url = Astro.site;
+const site_domain = import.meta.env.PUBLIC_SITE_DOMAIN;
+
+// Props
+const canonical = Astro.props.canonical || undefined;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    {canonical && <link rel="canonical" href={canonical}>}
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <title>{title}</title>
+    <meta name="description" content={desc}>
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={desc} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={site_url + (canonical || "")} />
+    <meta property="og:image" content={site_url + "og-image.jpg"} />
+
+    <!-- Analytics -->
+    <script defer data-domain={site_domain} src={`https://analytics.${site_domain}/js/plausible.js`}></script>
+
+    <script is:inline>
+      (function() {
+        const theme = localStorage.getItem("theme") || "dark";
+        window.theme = theme;
+        document.documentElement.classList.add(theme);
+      })();
+    </script>
+  </head>
+  <body class="">
+    <!-- Header -->
+    <main>
+      <slot />
+    </main>
+    <!-- Footer -->
+  </body>
+</html>
