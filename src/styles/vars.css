@@ -1,0 +1,51 @@
+:root {
+  /* Colors */
+  /* Mint */
+  --color-mint: #15FF93;
+  --color-mint-50: #CDFFE8;
+  --color-mint-100: #B8FFDE;
+  --color-mint-200: #8FFFCB;
+  --color-mint-300: #67FFB9;
+  --color-mint-400: #3EFFA6;
+  --color-mint-500: #15FF93;
+  --color-mint-600: #00DC76;
+  --color-mint-700: #00A458;
+  --color-mint-800: #006C3A;
+  --color-mint-900: #00341C;
+  /* Orange */
+  --color-orange: #E8871E;
+  --color-orange-50: #F9E0C5;
+  --color-orange-100: #F7D6B2;
+  --color-orange-200: #F3C28D;
+  --color-orange-300: #F0AE68;
+  --color-orange-400: #EC9B43;
+  --color-orange-500: #E8871E;
+  --color-orange-600: #BB6A13;
+  --color-orange-700: #884D0E;
+  --color-orange-800: #553009;
+  --color-orange-900: #221303;
+  /* Blue */
+  --color-blue: #352BD1;
+  --color-blue-50: #C4C1F2;
+  --color-blue-100: #B4B0EF;
+  --color-blue-200: #948FE8;
+  --color-blue-300: #746DE1;
+  --color-blue-400: #534BDA;
+  --color-blue-500: #352BD1;
+  --color-blue-600: #2921A2;
+  --color-blue-700: #1D1874;
+  --color-blue-800: #120E45;
+  --color-blue-900: #060517;
+  /* Silver */
+  --color-silver: #8491A3;
+  --color-silver-50: #EDEFF2;
+  --color-silver-100: #E1E4E9;
+  --color-silver-200: #CAD0D7;
+  --color-silver-300: #B3BBC6;
+  --color-silver-400: #9BA6B4;
+  --color-silver-500: #8491A3;
+  --color-silver-600: #667589;
+  --color-silver-700: #4E5969;
+  --color-silver-800: #363E48;
+  --color-silver-900: #1E2228;
+}

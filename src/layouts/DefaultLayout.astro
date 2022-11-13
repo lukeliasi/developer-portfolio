@@ -3,6 +3,7 @@ interface Props {
   canonical?: string;
 }
 
+import '../styles/vars.css';
 import '../styles/global.css';
 import { yearsInIndustry } from "../util/yearsInIndustry";
 
@@ -41,7 +42,7 @@ const canonical = Astro.props.canonical || undefined;
       })();
     </script>
   </head>
-  <body class="">
+  <body class="page">
     <!-- Header -->
     <main>
       <slot />

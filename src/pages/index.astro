@@ -1,7 +1,20 @@
 ---
 import DefaultLayout from '../layouts/DefaultLayout.astro';
-import css from "../styles/home.module.css";
+import { yearsInIndustry } from "../util/yearsInIndustry";
 ---
+
 <DefaultLayout>
-  <h1 class={css.title}>Hello</h1>
+  <section class="container max-w-6xl pt-4">
+    <h1>
+      <span class="font-ibm-plex-mono text-blue-600 dark:text-mint font-semibold">Welcome, my name is <br></span>
+      <span class="text-swipe-animation inline-block dark:text-silver-100 text-silver-900 font-black sm:text-7xl text-5xl overflow-hidden">Luke Liasi.</span>
+    </h1>
+    <h2 class="dark:text-silver-400 text-silver-800 sm:text-6xl text-4xl font-bold">I build compelling <br class="sm:block hidden" />digital experiences.</h2>
+    <p class="dark:text-silver-400 text-silver-900 text-lg leading-6 mt-4">Software engineer, passionate about solving problems with code.<br class="sm:block hidden" />Over {yearsInIndustry()} years of industry experience specialising in JavaScript, React & Node.</p>
+    <div class="wave-container"></div>
+  </section>
 </DefaultLayout>
+
+<script hoist>
+  import "../js/wave.js";
+</script>
