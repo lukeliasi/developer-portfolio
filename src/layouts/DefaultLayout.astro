@@ -3,12 +3,14 @@ interface Props {
   canonical?: string;
 }
 
+import "../styles/modern-normalize.css";
 import "../styles/fonts.css";
 import "../styles/vars.css";
 import "../styles/global.css";
-import { yearsInIndustry } from "../util/yearsInIndustry";
+import { yearsInIndustry } from "../js/yearsInIndustry";
 
-import ThemeToggleButton from "../components/ThemeToggleButton.astro";
+import Header from "../components/Header.astro"
+import Footer from "../components/Footer.astro"
 
 const title = import.meta.env.PUBLIC_SITE_NAME;
 const desc = `Software engineer, passionate about solving problems with code. Over ${yearsInIndustry()} years of industry experience specialising in JavaScript, React & Node.`;
@@ -51,10 +53,20 @@ const canonical = Astro.props.canonical || undefined;
     <audio src="/sounds/switch.mp3" id="sound_switch" preload="auto" hidden></audio>
 
     <!-- Header -->
-    <ThemeToggleButton />
+    <Header />
+
+    <!-- Main content -->
     <main>
       <slot />
     </main>
+
     <!-- Footer -->
+    <Footer />
   </body>
 </html>
+
+<style lang="scss">
+  main {
+    flex-grow: 1;
+  }
+</style>

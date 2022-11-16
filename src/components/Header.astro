@@ -1,0 +1,43 @@
+---
+import ThemeToggleButton from "../components/ThemeToggleButton.astro";
+import Menu from "../components/Menu.astro";
+---
+
+<header class="container">
+  <a href="/" class="avatar">
+    <img width="35px" class="profile-pic" src="/images/profile-pic.jpg" alt="Luke Liasi profile picture" />
+    <span class="name">Luke Liasi</span>
+  </a>
+
+  <ThemeToggleButton />
+</header>
+
+<style lang="scss">
+  header {
+    padding-top: 25px;
+    width: 100%;
+  }
+
+  .avatar {
+    color: var(--color-silver-100);
+    text-decoration: none;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    &:hover {
+      text-decoration: none;
+      color: white;
+      .profile-pic {
+        filter: brightness(125%);
+      }
+    }
+  }
+
+  .profile-pic {
+    border-radius: 50%;
+  }
+
+  .name {
+    margin-left: 1rem;
+  }
+</style>

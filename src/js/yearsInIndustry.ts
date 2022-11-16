@@ -1,4 +1,4 @@
-import { differenceInYears } from "../util/differenceInYears";
+import { differenceInYears } from "./differenceInYears";
 import globalData from "../data/global.json";
 
 export function yearsInIndustry() {

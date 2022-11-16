@@ -1,7 +1,7 @@
 const today = new Date();
 const currentHour = today.getHours();
 
-function greeter() {
+export function greeting() {
   // 4am - 12pm
   if (currentHour >= 4 && currentHour < 12) {
     return "Good morning!";
@@ -20,5 +20,3 @@ function greeter() {
   // Between 12am and 4am when it doesn't feel right to say "Good morning"!
   return "Hey there!";
 }
-
-module.exports = { greeter };

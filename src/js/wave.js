@@ -92,7 +92,6 @@ function waveAnimation(container) {
   const perlin = new Perlin();
   let theta = 0;
   const size = width > height ? width : height;
-  new THREE.Vector2(width, height);
 
   let params = {
     blocks: 30,
@@ -176,4 +175,3 @@ const waveContainer = document.querySelector(".wave-container");
 if (waveContainer) {
   waveAnimation(".wave-container");
 }
-

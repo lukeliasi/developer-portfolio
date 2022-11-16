@@ -1,7 +1,7 @@
 # lukeliasi.com
 Source code for my personal website [lukeliasi.com](http://lukeliasi.com).
 
-## 🛠️ Built with 
+## 🛠️ Built with
 - [Astro](https://astro.build/)
 
 ## 🧞 Commands

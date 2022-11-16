@@ -1,0 +1,21 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="container">
+  <p class="legal">Copyright &copy {currentYear} Luke Liasi. Website source code on <a class="dark:text-mint-600 text-blue-600" target="_blank" rel="noreferrer" href="https://github.com/lukeliasi/lukeliasi.com">GitHub</a>.</p>
+</footer>
+
+<style lang="scss">
+  footer {
+    margin-top: auto;
+    font-size: var(--font-size-sm);
+    padding: 1.5rem 0;
+    width: 100%;
+  }
+
+  .legal {
+    font-family: var(--font-family-IBM-Plex-Mono);
+    color: var(--color-silver-400);
+  }
+</style>

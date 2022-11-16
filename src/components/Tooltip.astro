@@ -1,0 +1,57 @@
+<div class="tooltip-container">
+  <div class="tooltip">
+    <slot name="tooltip-content"/>
+  </div>
+  <slot />
+</div>
+
+<style lang="scss">
+  .tooltip {
+    position: absolute;
+    visibility: hidden;
+    background: black;
+    color: white;
+    font-size: var(--font-size-sm);
+    width: auto;
+    padding: 5px;
+    text-align: center;
+    pointer-events: none;
+  }
+
+  .tooltip-container {
+    position: relative;
+    display: inline-block;
+  }
+
+  .tooltip-container.tooltip-activated:hover .tooltip {
+    visibility: visible;
+  }
+</style>
+
+<script>
+  const tooltipContainers = document.querySelectorAll(".tooltip-container");
+
+  if ("ontouchstart" in document.documentElement === false) {
+    // non touch-screen (mobile) devices
+    for (const tooltipContainer of Array.from(tooltipContainers)) {
+      tooltipContainer.classList.add("tooltip-activated");
+      tooltipContainer.addEventListener("mousemove", (event) => {
+        let x = 0;
+        let y = 0;
+
+        if (tooltipContainer) {
+          const node = event.currentTarget as HTMLElement;
+          const elementRect = node.getBoundingClientRect();
+          const mouseEvent = event as MouseEvent;
+          x = mouseEvent.clientX - elementRect.left + 10; // x position within the element.
+          y = mouseEvent.clientY - elementRect.top + 10; // y position within the element.
+
+          const tooltip = tooltipContainer.querySelector(".tooltip") as HTMLElement;
+
+          tooltip.style.left = x + "px";
+          tooltip.style.top = y + "px";
+        }
+      });
+    }
+  }
+</script>
