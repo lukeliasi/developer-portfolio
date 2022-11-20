@@ -7,6 +7,37 @@ interface Props {
 const { text, link } = Astro.props;
 ---
 
-<li>
-  <a href={link}>{text}</a>
+<li class="menu-item">
+  <a class="menu-item-link" href={link}>{text}</a>
 </li>
+
+<style lang="scss">
+  .menu-item-link {
+    font-size: var(--font-size-lg);
+    color: var(--color-silver-100);
+    font-family: var(--font-family-IBM-Plex-Mono);
+    font-weight: 500;
+    transition: all 250ms ease-in-out;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  html.dark {
+    .menu-item-link {
+      &:hover {
+        color: var(--color-mint-300);
+        text-shadow: 0px 6px 18px rgb(21 255 147 / 90%);
+      }
+    }
+  }
+
+  html.light {
+    .menu-item-link {
+      &:hover {
+        color: var(--color-color-300);
+        text-shadow: 0px 6px 18px rgba(21, 37, 255, 10%);
+      }
+    }
+  }
+</style>

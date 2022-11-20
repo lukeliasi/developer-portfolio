@@ -6,8 +6,6 @@ html, body {
 }
 
 .page {
-  /* transition: background-color 250ms ease-in-out; */
-  transition: all 1s ease-out;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -22,7 +20,7 @@ html.dark {
 
 html.light {
   background: #fafafa;
-  background: linear-gradient(0deg, #f1f1f1 0%, #dadada 100%);
+  background: linear-gradient(0deg, #d6d6d6 0%, #dadada 100%);
 }
 
 .container {
@@ -33,8 +31,8 @@ html.light {
 }
 
 a {
-  color: var(--color-mint);
   text-decoration: none;
+  font-weight: 500;
 }
 
 a:hover {
@@ -73,7 +71,6 @@ a:hover {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #15FF93;
   pointer-events: none;
 }
 
@@ -120,4 +117,28 @@ a:hover {
   60%, 100% { transform-origin: 0 50%; }
   60% { transform: scaleX(1); }
   100% { transform: scaleX(0); }
+}
+
+/* Dark mode */
+html.dark {
+  .text-swipe-animation::after,
+  .text-swipe-animation-reverse::after {
+    background-color: var(--color-mint);
+  }
+
+  a {
+    color: var(--color-mint);
+  }
+}
+
+/* Light mode */
+html.light {
+  .text-swipe-animation::after,
+  .text-swipe-animation-reverse::after {
+    background-color: var(--color-blue);
+  }
+
+  a {
+    color: var(--color-blue);
+  }
 }

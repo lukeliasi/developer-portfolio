@@ -1,5 +1,6 @@
 ---
-import DefaultLayout from '../layouts/DefaultLayout.astro';
+import DefaultLayout from '../components/DefaultLayout.astro';
+import Button from '../components/Button.astro';
 import { yearsInIndustry } from "../js/yearsInIndustry";
 ---
 
@@ -11,87 +12,30 @@ import { yearsInIndustry } from "../js/yearsInIndustry";
     </h1>
     <h2 class="intro">I build compelling <br class="sm:block hidden" />digital experiences.</h2>
     <p class="desc">Software engineer, passionate about solving problems with code.<br class="breakspace" />Over {yearsInIndustry()} years of industry experience specialising in JavaScript, React & Node.</p>
-    <a class="btn" href="">See my projects
+
+    <Button href="/projects" variant="outline">
+      See my projects
       <svg style="margin-left: 5px" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 20 20" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
-    </a>
+    </Button>
   </section>
 
   <canvas id="waves"></canvas>
-
 </DefaultLayout>
 
 <style lang="scss">
-  .btn {
-    border: 1px solid var(--color-mint);
-    border-radius: 2px;
-    padding: 10px 30px;
-    margin-top: 10px;
-    display: inline-flex;
-  align-items: center;
-  }
+  $waves-opacity: 0.5;
 
-  .t {
-    color: var(--color-mint);
-    font-size: var(--font-size-base);
-  }
-
-  .a {
-    color: var(--color-orange);
-    font-family: var(--font-family-IBM-Plex-Mono);
-    font-size: var(--font-size-base);
-    font-weight: 600;
-  }
-
-  .b {
-    color: white;
-    font-weight: normal;
-  }
-
-  .c {
-    color: white;
-    font-weight: normal;
-  }
-
-  .blinker {
-  opacity: 1;
-  margin-bottom: -2px;
-  height: 15px;
-  margin-left: -5px;
-  border-left: 7px solid var(--color-mint);
-  animation: blinker 0.9s steps(2, start) infinite;
-}
-
-@keyframes blinker {
-  to {
-    visibility: hidden;
-  }
-}
-
-@keyframes fadeInWaves {
+  @keyframes fadeInWaves {
     0% { opacity: 0 }
-    100% { opacity: 0.3 }
+    100% { opacity: $waves-opacity }
   }
 
-  .wave-container {
-    animation: fadeInWaves 2s;
-    background: transparent;
-    height: 100vh;
-    left: 0;
-    opacity: 0.3;
-    position: absolute;
-    right: 0;
-    top: 0;
-    width: 100%;
-    z-index: -1;
-    overflow: hidden;
-  }
-
-  canvas {
+  canvas#waves {
     width: 100%;
     height: 100vh;
     animation: fadeInWaves 2s;
     background: transparent;
-    opacity: 0.3;
+    opacity: $waves-opacity;
     left: 0;
     position: absolute;
     right: 0;
@@ -113,7 +57,6 @@ import { yearsInIndustry } from "../js/yearsInIndustry";
   }
 
   .intro-name {
-    color: white;
     font-family: var(--font-family-Mukta);
     font-size: var(--font-size-14xl);
     overflow: hidden;
@@ -122,7 +65,6 @@ import { yearsInIndustry } from "../js/yearsInIndustry";
   }
 
   .intro {
-    color: var(--color-silver-300);
     font-size: var(--font-size-11xl);
     line-height: 3.25rem;
     margin: 1rem 0;
@@ -130,7 +72,6 @@ import { yearsInIndustry } from "../js/yearsInIndustry";
 
   .desc {
     font-size: var(--font-size-lg);
-    color: var(--color-silver-100);
     line-height: 1.5em;
   }
 
@@ -138,12 +79,22 @@ import { yearsInIndustry } from "../js/yearsInIndustry";
 
   }
 
-
-
   // Dark mode
   html.dark {
     .intro-welcome {
       color: var(--color-mint);
+    }
+
+    .intro-name {
+      color: white;
+    }
+
+    .intro {
+      color: var(--color-silver-300);
+    }
+
+    .desc {
+      color: var(--color-silver-100);
     }
   }
 
@@ -152,72 +103,21 @@ import { yearsInIndustry } from "../js/yearsInIndustry";
     .intro-welcome {
       color: var(--color-blue-600);
     }
+
+    .intro-name {
+      color: var(--color-silver-900);
+    }
+
+    .intro {
+      color: var(--color-silver-700);
+    }
+
+    .desc {
+      color: var(--color-silver-800);
+    }
   }
-
-
-  $font-color: #00ff65;
-@import 'https://fonts.googleapis.com/css?family=Share+Tech+Mono';
-$font-family: 'Share Tech Mono', monospace;
-  .d-inline-block {
-  display: inline-block;
-  overflow: hidden;
-  color: orange;
-}
-#blinker {
-  width: 3px;
-  height: 18px;
-  background-color: $font-color;
-  position: relative;
-  top: -1px;
-  left: -6px;
-  -webkit-animation: blink 1s step-end infinite;
-          animation: blink 1s step-end infinite;
-}
-
-.type {
-  font-family: $font-family;
-  overflow: hidden;
-  display: inline-block;
-  width: 12ch;
-  -webkit-animation: type 5s steps(12, end) infinite alternate;
-          animation: type 5s steps(12, end) infinite alternate;
-  white-space: nowrap;
-  color: $font-color;
-}
-
-@-webkit-keyframes blink {
-  from, to {
-    background-color: transparent;
-  }
-  50% {
-    background-color: $font-color;
-  }
-}
-
-@keyframes blink {
-  from, to {
-    background-color: transparent;
-  }
-  50% {
-    background-color: $font-color;
-  }
-}
-
-@-webkit-keyframes type {
-  from { width: 0; }
-}
-
-@keyframes type {
-  from { width: 0; }
-}
-
-.x {
-  background: #000034;
-  padding: 10px
-}
 </style>
 
 <script hoist>
-  // import "../js/wave.js";
-  import "../js/p.js";
+  import "../js/wave.js";
 </script>

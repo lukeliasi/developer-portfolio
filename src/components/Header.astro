@@ -1,25 +1,30 @@
 ---
-import ThemeToggleButton from "../components/ThemeToggleButton.astro";
 import Menu from "../components/Menu.astro";
 ---
 
 <header class="container">
-  <a href="/" class="avatar">
-    <img width="35px" class="profile-pic" src="/images/profile-pic.jpg" alt="Luke Liasi profile picture" />
-    <span class="name">Luke Liasi</span>
-  </a>
+  <div class="header-left">
+    <a href="/" class="avatar">
+      <img width="35px" class="profile-pic" src="/images/profile-pic.jpg" alt="Luke Liasi profile picture" />
+      <span class="name">Luke Liasi</span>
+    </a>
+  </div>
 
-  <ThemeToggleButton />
+  <div class="header-right">
+    <Menu />
+  </div>
 </header>
 
 <style lang="scss">
   header {
     padding-top: 25px;
     width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
   .avatar {
-    color: var(--color-silver-100);
     text-decoration: none;
     font-weight: 500;
     display: flex;
@@ -38,6 +43,18 @@ import Menu from "../components/Menu.astro";
   }
 
   .name {
-    margin-left: 1rem;
+    margin-left: 0.5rem;
+  }
+
+  html.dark {
+    .avatar {
+      color: var(--color-silver-100);
+    }
+  }
+
+  html.light {
+    .avatar {
+      color: var(--color-silver-900);
+    }
   }
 </style>

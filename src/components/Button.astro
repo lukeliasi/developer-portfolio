@@ -1,0 +1,90 @@
+---
+interface Props {
+  variant?: "solid" | "outline";
+  href?: string;
+}
+
+const { variant = "solid", href } = Astro.props;
+const defaultProps = { class: `button ${variant}` };
+---
+
+{href ? (
+  <a {...defaultProps} href={href}>
+    <slot />
+  </a>
+) : (
+  <button {...defaultProps}>
+    <slot />
+  </button>
+)}
+
+<style lang="scss">
+  .button {
+    border: 1px solid;
+    border-radius: 2px;
+    padding: 12px 28px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    line-height: 1rem;
+    font-size: var(--font-size-lg);
+    transition: all 250ms ease-in-out;
+    cursor: pointer;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  html.dark {
+    .button {
+      border-color: var(--color-mint);
+      &:hover {
+        text-decoration: none;
+        box-shadow: 0 3px 20px rgb(0 225 121 / 50%);
+        border-color: var(--color-mint-400);
+      }
+      &.solid {
+        background: var(--color-mint);
+        color: black;
+        &:hover {
+          background: var(--color-mint-400);
+        }
+      }
+      &.outline {
+        background: transparent;
+        color: var(--color-mint);
+        &:hover {
+          background: var(--color-mint-400);
+          color: initial;
+        }
+      }
+    }
+  }
+
+  html.light {
+    .button {
+      border-color: var(--color-blue);
+      &:hover {
+        text-decoration: none;
+        box-shadow: 0 3px 20px rgb(0 4 225 / 40%);
+        border-color: var(--color-blue-400);
+      }
+      &.solid {
+        background: var(--color-blue);
+        color: black;
+        &:hover {
+          background: var(--color-blue-400);
+        }
+      }
+      &.outline {
+        background: transparent;
+        color: var(--color-blue);
+        &:hover {
+          background: var(--color-blue-400);
+          color: white;
+        }
+      }
+    }
+  }
+</style>
