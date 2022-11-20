@@ -1,20 +1,28 @@
 html, body {
   font-family: 'Mukta', sans-serif;
   font-size: 1em;
-  height: 100%;
+  min-height: 100%;
   margin: 0;
 }
 
 .page {
-  transition: background-color 250ms ease-in-out;
+  /* transition: background-color 250ms ease-in-out; */
+  transition: all 1s ease-out;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 html.dark {
   background: var(--color-blue-900);
   background: linear-gradient(0deg, #000c09 0%, #003076 100%);
+}
+
+html.light {
+  background: #fafafa;
+  background: linear-gradient(0deg, #f1f1f1 0%, #dadada 100%);
 }
 
 .container {

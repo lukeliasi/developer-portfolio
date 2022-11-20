@@ -11,11 +11,96 @@ import { yearsInIndustry } from "../js/yearsInIndustry";
     </h1>
     <h2 class="intro">I build compelling <br class="sm:block hidden" />digital experiences.</h2>
     <p class="desc">Software engineer, passionate about solving problems with code.<br class="breakspace" />Over {yearsInIndustry()} years of industry experience specialising in JavaScript, React & Node.</p>
-    <div class="wave-container"></div>
+    <a class="btn" href="">See my projects
+      <svg style="margin-left: 5px" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 20 20" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+    </a>
   </section>
+
+  <canvas id="waves"></canvas>
+
 </DefaultLayout>
 
 <style lang="scss">
+  .btn {
+    border: 1px solid var(--color-mint);
+    border-radius: 2px;
+    padding: 10px 30px;
+    margin-top: 10px;
+    display: inline-flex;
+  align-items: center;
+  }
+
+  .t {
+    color: var(--color-mint);
+    font-size: var(--font-size-base);
+  }
+
+  .a {
+    color: var(--color-orange);
+    font-family: var(--font-family-IBM-Plex-Mono);
+    font-size: var(--font-size-base);
+    font-weight: 600;
+  }
+
+  .b {
+    color: white;
+    font-weight: normal;
+  }
+
+  .c {
+    color: white;
+    font-weight: normal;
+  }
+
+  .blinker {
+  opacity: 1;
+  margin-bottom: -2px;
+  height: 15px;
+  margin-left: -5px;
+  border-left: 7px solid var(--color-mint);
+  animation: blinker 0.9s steps(2, start) infinite;
+}
+
+@keyframes blinker {
+  to {
+    visibility: hidden;
+  }
+}
+
+@keyframes fadeInWaves {
+    0% { opacity: 0 }
+    100% { opacity: 0.3 }
+  }
+
+  .wave-container {
+    animation: fadeInWaves 2s;
+    background: transparent;
+    height: 100vh;
+    left: 0;
+    opacity: 0.3;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+    z-index: -1;
+    overflow: hidden;
+  }
+
+  canvas {
+    width: 100%;
+    height: 100vh;
+    animation: fadeInWaves 2s;
+    background: transparent;
+    opacity: 0.3;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
   h1 {
     line-height: 2.5rem;
     margin: 1rem 0;
@@ -53,24 +138,7 @@ import { yearsInIndustry } from "../js/yearsInIndustry";
 
   }
 
-  @keyframes fadeInWave {
-    0% { opacity: 0 }
-    100% { opacity: 0.3 }
-  }
 
-  .wave-container {
-    animation: fadeInWave 1.5s;
-    background: transparent;
-    height: 100vh;
-    left: 0;
-    opacity: 0.3;
-    position: absolute;
-    right: 0;
-    top: 0;
-    width: 100%;
-    z-index: -1;
-    overflow: hidden;
-  }
 
   // Dark mode
   html.dark {
@@ -85,8 +153,71 @@ import { yearsInIndustry } from "../js/yearsInIndustry";
       color: var(--color-blue-600);
     }
   }
+
+
+  $font-color: #00ff65;
+@import 'https://fonts.googleapis.com/css?family=Share+Tech+Mono';
+$font-family: 'Share Tech Mono', monospace;
+  .d-inline-block {
+  display: inline-block;
+  overflow: hidden;
+  color: orange;
+}
+#blinker {
+  width: 3px;
+  height: 18px;
+  background-color: $font-color;
+  position: relative;
+  top: -1px;
+  left: -6px;
+  -webkit-animation: blink 1s step-end infinite;
+          animation: blink 1s step-end infinite;
+}
+
+.type {
+  font-family: $font-family;
+  overflow: hidden;
+  display: inline-block;
+  width: 12ch;
+  -webkit-animation: type 5s steps(12, end) infinite alternate;
+          animation: type 5s steps(12, end) infinite alternate;
+  white-space: nowrap;
+  color: $font-color;
+}
+
+@-webkit-keyframes blink {
+  from, to {
+    background-color: transparent;
+  }
+  50% {
+    background-color: $font-color;
+  }
+}
+
+@keyframes blink {
+  from, to {
+    background-color: transparent;
+  }
+  50% {
+    background-color: $font-color;
+  }
+}
+
+@-webkit-keyframes type {
+  from { width: 0; }
+}
+
+@keyframes type {
+  from { width: 0; }
+}
+
+.x {
+  background: #000034;
+  padding: 10px
+}
 </style>
 
 <script hoist>
-  import "../js/wave.js";
+  // import "../js/wave.js";
+  import "../js/p.js";
 </script>
