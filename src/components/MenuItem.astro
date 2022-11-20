@@ -4,15 +4,18 @@ interface Props {
   link: string;
 }
 
+const pathname = new URL(Astro.request.url).pathname;
+
 const { text, link } = Astro.props;
 ---
 
 <li class="menu-item">
-  <a class="menu-item-link" href={link}>{text}</a>
+  <a class={`menu-item-link ${pathname === link ? "active" : ""}`} href={link}>{text}</a>
 </li>
 
 <style lang="scss">
   .menu-item-link {
+    padding: 5px 12px;
     font-size: var(--font-size-lg);
     color: var(--color-silver-100);
     font-family: var(--font-family-IBM-Plex-Mono);
@@ -20,6 +23,9 @@ const { text, link } = Astro.props;
     transition: all 250ms ease-in-out;
     &:hover {
       text-decoration: none;
+    }
+    &.active {
+      text-shadow: none;
     }
   }
 
@@ -29,14 +35,22 @@ const { text, link } = Astro.props;
         color: var(--color-mint-300);
         text-shadow: 0px 6px 18px rgb(21 255 147 / 90%);
       }
+      &.active {
+        background: rgb(0 255 137 / 10%);
+        border-bottom: 1px solid rgb(0 255 31 / 40%);
+      }
     }
   }
 
   html.light {
     .menu-item-link {
       &:hover {
-        color: var(--color-color-300);
-        text-shadow: 0px 6px 18px rgba(21, 37, 255, 10%);
+        color: var(--color-blue-600);
+        text-shadow: 0px 6px 18px rgba(21, 37, 255, 5%);
+      }
+      &.active {
+        background: rgba(4, 0, 255, 0.1);
+        border-bottom: 1px solid rgba(25, 0, 255, 0.4);
       }
     }
   }
