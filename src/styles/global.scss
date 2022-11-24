@@ -39,6 +39,18 @@ a:hover {
   text-decoration: underline;
 }
 
+.main-heading {
+  font-size: var(--font-size-8xl);
+  display: inline-block;
+  margin: 1.5rem 0 0.5rem 0;
+}
+
+p {
+  font-size: var(--font-size-lg);
+  margin: 0.5rem 0 0.75rem 0;
+  line-height: 1.65rem;
+}
+
 /* Animations */
 .text-swipe-animation,
 .text-swipe-animation::after,
@@ -129,6 +141,18 @@ html.dark {
   a {
     color: var(--color-mint);
   }
+
+  .main-heading {
+    color: white;
+  }
+
+  p {
+    color: var(--color-silver-200);
+  }
+
+  .buzzword {
+    color: #d4baff;
+  }
 }
 
 /* Light mode */
@@ -140,5 +164,17 @@ html.light {
 
   a {
     color: var(--color-blue);
+  }
+
+  .main-heading {
+    color: var(--color-silver-900);
+  }
+
+  p {
+    color: var(--color-silver-800);
+  }
+
+  .buzzword {
+    color: #42006a;
   }
 }

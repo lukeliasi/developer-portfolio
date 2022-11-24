@@ -1,8 +1,86 @@
 ---
 import DefaultLayout from '../components/DefaultLayout.astro';
 import { greeting } from "../js/greeting";
+import { yearsInIndustry } from "../js/yearsInIndustry";
+import DevLogos from "../components/DevLogos.astro";
 ---
 
 <DefaultLayout>
-  Hello. {greeting()}
+  <section class="container">
+    <h1 class="main-heading text-swipe-animation">{greeting()}</h1>
+    <div class="intro">
+      <p>I'm Luke Liasi, a Senior Software Developer living in the UK.</p>
+      <p>I have been developing software professionally for over {yearsInIndustry} years, and have a particular speciality in frontend web development.</p>
+    </div>
+
+    <div class="main-section">
+      <img width="240px" src="/images/me.png" alt="Luke Liasi">
+      <div class="main-section-text">
+        <p>My main experience is in front-end development working with technologies such <span class="buzzword">JavaScript</span>, <span class="buzzword">TypeScript</span>, <span class="buzzword">React</span>, <span class="buzzword">HTML</span> and <span class="buzzword">CSS</span> with a keen eye for <span class="buzzword">UI design</span> and <span class="buzzword">UX</span>. Additionally, I have experience with backend development using technologies such as: <span class="buzzword">Node/Express.js</span>, <span class="buzzword">SQL/NoSQL</span> and <span class="buzzword">REST/GraphQL</span>.</p>
+        <p>I enjoy problem-solving and strive to build efficient and organised systems while ensuring they are fast, performant and accessible for all.</p>
+        <p>In my spare time, I enjoy skiing, swimming, running and gaming!</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee dev-icons my-12">
+    <div class="marquee-content">
+      <DevLogos />
+    </div>
+
+    <!-- Logos duplicated for scrolling effect -->
+    <div aria-hidden="true" class="marquee-content">
+      <DevLogos />
+    </div>
+  </div>
 </DefaultLayout>
+
+<style lang="scss">
+  .main-section {
+    display: flex;
+    gap: 2rem;
+    margin-top: 1rem;
+    align-items: center;
+  }
+
+  /* Marquee styles */
+  .marquee {
+    --gap: 1rem;
+    position: relative;
+    display: flex;
+    overflow: hidden;
+    user-select: none;
+    gap: var(--gap);
+    margin: 2rem 0;
+    &:hover {
+      .marquee-content {
+        animation-play-state: paused;
+      }
+    }
+  }
+
+  .marquee-content {
+    flex-shrink: 0;
+    display: flex;
+    justify-content: space-around;
+    gap: var(--gap);
+    min-width: 100%;
+    animation: scroll 20s linear infinite;
+  }
+
+  @keyframes scroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(calc(-100% - var(--gap)));
+    }
+  }
+
+  /* Pause animation when reduced-motion is set */
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-content {
+      animation-play-state: paused !important;
+    }
+  }
+</style>

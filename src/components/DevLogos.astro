@@ -1,0 +1,38 @@
+<img class="devicon" src="/images/dev-logos/javascript.svg" alt="JavaScript" title="JavaScript">
+<img class="devicon" src="/images/dev-logos/typescript.svg" alt="TypeScript" title="TypeScript">
+<img class="devicon" src="/images/dev-logos/react.svg" alt="React" title="React">
+<img class="devicon" src="/images/dev-logos/nodejs.svg" alt="NodeJS" title="NodeJS">
+<img class="devicon" src="/images/dev-logos/html.svg" alt="HTML" title="HTML">
+<img class="devicon" src="/images/dev-logos/css.svg" alt="CSS" title="CSS">
+<img class="devicon" src="/images/dev-logos/tailwind.svg" alt="Tailwind CSS" title="Tailwind CSS">
+<img class="devicon" src="/images/dev-logos/python.svg" alt="Python" title="Python">
+<img class="devicon" src="/images/dev-logos/mongodb.svg" alt="MongoDB" title="MongoDB">
+<img class="devicon" src="/images/dev-logos/selenium.svg" alt="Selenium" title="Selenium">
+<img class="devicon" src="/images/dev-logos/mocha.svg" alt="Mocha" title="Mocha">
+<img class="devicon" src="/images/dev-logos/linux.svg" alt="Linux" title="Linux">
+<img class="devicon" src="/images/dev-logos/git.svg" alt="Git" title="Git">
+<img class="devicon" src="/images/dev-logos/xd.svg" alt="Adobe XD" title="Adobe XD">
+<img class="devicon" src="/images/dev-logos/ps.svg" alt="Adobe Photoshop" title="Adobe Photoshop">
+<img class="devicon" src="/images/dev-logos/ai.svg" alt="Adobe Illustrator" title="Adobe Illustrator">
+<img class="devicon" src="/images/dev-logos/figma.svg" alt="Figma" title="Figma">
+
+<style>
+  .devicon {
+    width: 60px;
+    height: 60px;
+  }
+  </style>
+
+<script>
+  import tippy, { createSingleton } from 'tippy.js';
+
+  const tippyInstances = tippy(".devicon", {
+    content: (reference: any) => reference.getAttribute("title"),
+  });
+
+  const singleton = createSingleton(tippyInstances, {
+    moveTransition: 'transform 0.2s ease-out',
+  });
+
+  singleton.enable();
+</script>
