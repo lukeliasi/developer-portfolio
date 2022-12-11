@@ -15,7 +15,7 @@ html, body {
 
 html.dark {
   background: var(--color-blue-900);
-  background: linear-gradient(0deg, #000c09 0%, #003076 100%);
+  background: linear-gradient(0deg, #000c09 0%, #031f49 100%);
 }
 
 html.light {
@@ -41,6 +41,12 @@ a:hover {
 
 .main-heading {
   font-size: var(--font-size-8xl);
+  display: inline-block;
+  margin: 1.5rem 0 0.5rem 0;
+}
+
+.sub-heading {
+  font-size: var(--font-size-4xl);
   display: inline-block;
   margin: 1.5rem 0 0.5rem 0;
 }
@@ -142,8 +148,9 @@ html.dark {
     color: var(--color-mint);
   }
 
-  .main-heading {
-    color: white;
+  .main-heading,
+  .sub-heading {
+    color: var(--color-silver-100);
   }
 
   p {
@@ -166,7 +173,8 @@ html.light {
     color: var(--color-blue);
   }
 
-  .main-heading {
+  .main-heading,
+  .sub-heading {
     color: var(--color-silver-900);
   }
 

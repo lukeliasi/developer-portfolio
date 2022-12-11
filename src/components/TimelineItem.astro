@@ -1,0 +1,86 @@
+---
+interface Props {
+  title: string;
+  company: string;
+  startDate: string;
+  endDate?: string;
+  logo: string;
+  responsibilities: string[];
+}
+
+const { title, company, startDate, endDate, logo, responsibilities } = Astro.props;
+
+// Calculate the duration in milliseconds
+const start = new Date(startDate).getTime();
+const end = endDate ? new Date(endDate).getTime() : Date.now();
+const duration = end - start;
+
+// Format the duration as "X years Y months"
+const years = Math.floor(duration / 1000 / 60 / 60 / 24 / 365);
+const months = Math.floor(duration / 1000 / 60 / 60 / 24 / 30) % 12;
+---
+
+<div class="timeline-item">
+  <img class="logo" width="40px" height="40px" src={logo} alt={company} />
+  <div class="details">
+    <div class="title">{title} <span class="sep">|</span> <span class="company">{company}</span></div>
+    <p class="time">
+      {startDate} - {endDate || "Present"}
+    </p>
+    <ul class="responsibilities">
+      {responsibilities.map((responsibility) => (
+        <li>{responsibility}</li>
+      ))}
+    </ul>
+  </div>
+</div>
+
+<style lang="scss">
+  .timeline-item {
+    gap: 1.5rem;
+    display: flex;
+  }
+
+  .title {
+    font-size: var(--font-size-2xl);
+    color: var(--color-silver-300);
+    font-weight: 600;
+  }
+
+  .time {
+    font-size: var(--font-size-base);
+    font-family: var(--font-family-IBM-Plex-Mono);
+    margin-top: 0;
+  }
+
+  .company {
+    color: var(--color-silver-300);
+  }
+
+  .sep {
+    margin: 0 5px;
+    color: var(--color-silver-800);
+  }
+
+  .responsibilities {
+    color: var(--color-silver-400);
+    font-size: var(--font-size-lg);
+  }
+
+  .logo {
+    background: white;
+    padding: 5px;
+    border-radius: 4px;
+  }
+
+  .responsibilities {
+    li {
+      margin: 8px 0;
+      &::marker {
+        content: "►   ";
+        font-size: 12px;
+        color: var(--color-mint);
+      }
+    }
+  }
+</style>

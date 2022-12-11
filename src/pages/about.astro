@@ -3,27 +3,27 @@ import DefaultLayout from '../components/DefaultLayout.astro';
 import { greeting } from "../js/greeting";
 import { yearsInIndustry } from "../js/yearsInIndustry";
 import DevLogos from "../components/DevLogos.astro";
+import TimelineItem from "../components/TimelineItem.astro";
 ---
 
 <DefaultLayout>
   <section class="container">
     <h1 class="main-heading text-swipe-animation">{greeting()}</h1>
     <div class="intro">
-      <p>I'm Luke Liasi, a Senior Software Developer living in the UK.</p>
-      <p>I have been developing software professionally for over {yearsInIndustry} years, and have a particular speciality in frontend web development.</p>
+      <p>I'm Luke, a Senior Software Developer based in the UK with over {yearsInIndustry} years of experience building software.</p>
     </div>
 
     <div class="main-section">
-      <img width="240px" src="/images/me.png" alt="Luke Liasi">
+      <img class="profile-photo" src="/images/me.png" alt="Luke Liasi">
       <div class="main-section-text">
-        <p>My main experience is in front-end development working with technologies such <span class="buzzword">JavaScript</span>, <span class="buzzword">TypeScript</span>, <span class="buzzword">React</span>, <span class="buzzword">HTML</span> and <span class="buzzword">CSS</span> with a keen eye for <span class="buzzword">UI design</span> and <span class="buzzword">UX</span>. Additionally, I have experience with backend development using technologies such as: <span class="buzzword">Node/Express.js</span>, <span class="buzzword">SQL/NoSQL</span> and <span class="buzzword">REST/GraphQL</span>.</p>
-        <p>I enjoy problem-solving and strive to build efficient and organised systems while ensuring they are fast, performant and accessible for all.</p>
-        <p>In my spare time, I enjoy skiing, swimming, running and gaming!</p>
+        <p>My main expertise is frontend web development using technologies such as <span class="buzzword">JavaScript</span>, <span class="buzzword">TypeScript</span>, <span class="buzzword">React</span>, <span class="buzzword">HTML</span>, and <span class="buzzword">CSS</span>. I also have experience with backend development using <span class="buzzword">Node/Express.js</span>, <span class="buzzword">SQL/NoSQL</span>, and <span class="buzzword">REST/GraphQL</span>.</p>
+        <p>I'm passionate about solving problems and building efficient, organised systems that are fast, performant, and accessible to everyone.</p>
+        <p>In my free time, I enjoy outdoor activities such as skiing, swimming, and running, as well as gaming.</p>
       </div>
     </div>
   </section>
 
-  <div class="marquee dev-icons my-12">
+  <section class="marquee">
     <div class="marquee-content">
       <DevLogos />
     </div>
@@ -32,7 +32,65 @@ import DevLogos from "../components/DevLogos.astro";
     <div aria-hidden="true" class="marquee-content">
       <DevLogos />
     </div>
-  </div>
+  </section>
+
+  <section class="container">
+    <h2 class="sub-heading">Experience</h2>
+
+    <div class="timeline-items">
+      <TimelineItem
+        company="LondonLink"
+        title="Senior Software Developer"
+        startDate="May 2021"
+        logo="/images/LondonLink_Logo.svg"
+        responsibilities={[
+          "Lead frontend engineer, designing and implementing new features for the trading platform.",
+          "Implementing real-time websocket interfaces, which help to improve data concurrency/consistency and user experience.",
+          "Developing internal compliance tools which have been recognised by the company's board of directors for significantly improving staff workflows and adherence to regulatory commitments.",
+          "Conducting comprehensive end-to-end testing using tools such as Selenium, Mocha, and Chai to improve software quality, resulting in a reduction of defects and bugs."
+        ]}
+      />
+
+      <TimelineItem
+        company="Dodec"
+        title="Senior Software Developer"
+        startDate="Oct 2017"
+        endDate="May 2021"
+        logo="/images/Dodec_Logo.png"
+        responsibilities={[
+          "Project lead responsible for the successful launch of the Tefal UK e-commerce Magento store project, delivering the project on time and within budget. Duties include maintaining strict timelines and deadlines, and managing multiple cross-company teams and personnel, as well as collaborating with the client to understand their requirements.",
+          "Plan and lead the development of a bespoke medical application that is composed of a Node.js backend and a React.js frontend, ensuring strict compliance with security and privacy requirements while coordinating the work of our in-house team.",
+          "Mentoring junior developers by providing technical guidance and support. Implementing best practices and standards for coding and testing, including using linting tools like ESLint and implementing pull-request workflows, to improve the team's code performance and reliability."
+        ]}
+      />
+
+      <TimelineItem
+        company="Dodec"
+        title="Software Developer"
+        startDate="Sep 2014"
+        endDate="Oct 2017"
+        logo="/images/Dodec_Logo.png"
+        responsibilities={[
+          "Directing the development of landing pages showcasing new products for household brands, including Tefal and Krups, optimising them for mobile compatibility using responsive design techniques, resulting in increased conversions.",
+          "Designing and developing a streamlined experience for customers to register their GroupeSEB products, creating a scalable API built with Node.js and Express.js, and a MongoDB database capable of handling high traffic and requests.",
+          "Designing and developing custom WordPress themes and plugins for a range of clients.",
+        ]}
+      />
+
+      <TimelineItem
+        company="Dodec"
+        title="Junior Software Developer"
+        startDate="Sep 2013"
+        endDate="Sep 2014"
+        logo="/images/Dodec_Logo.png"
+        responsibilities={[
+          "Assisting in designing and developing static websites using HTML, CSS, and JavaScript.",
+          "Experience working on a Ruby on Rails project that is a large-scale employment platform, implemented key features and enhancements while developing a deep understanding of the Ruby on Rails framework and its capabilities.",
+          "Providing technical support and guidance to non-technical staff, helping them to understand and use the company's web-based software platform more effectively by creating a series of training materials and tutorials.",
+        ]}
+      />
+    </div>
+  </section>
 </DefaultLayout>
 
 <style lang="scss">
@@ -43,15 +101,19 @@ import DevLogos from "../components/DevLogos.astro";
     align-items: center;
   }
 
+  .profile-photo {
+    width: 200px;
+  }
+
   /* Marquee styles */
   .marquee {
-    --gap: 1rem;
+    --gap: 1.5rem;
     position: relative;
     display: flex;
     overflow: hidden;
     user-select: none;
     gap: var(--gap);
-    margin: 2rem 0;
+    margin: 3rem 0;
     &:hover {
       .marquee-content {
         animation-play-state: paused;
@@ -65,7 +127,7 @@ import DevLogos from "../components/DevLogos.astro";
     justify-content: space-around;
     gap: var(--gap);
     min-width: 100%;
-    animation: scroll 20s linear infinite;
+    animation: scroll 30s linear infinite;
   }
 
   @keyframes scroll {
@@ -82,5 +144,19 @@ import DevLogos from "../components/DevLogos.astro";
     .marquee-content {
       animation-play-state: paused !important;
     }
+  }
+
+  .sub-heading {
+    margin-bottom: 25px;
+    text-decoration: underline;
+    text-decoration-color: var(--color-mint);
+    text-decoration-thickness: 2px;
+    text-decoration-offset: 5px;
+  }
+
+  .timeline-items {
+    display: flex;
+    flex-direction: column;
+    row-gap: 3rem;
   }
 </style>
