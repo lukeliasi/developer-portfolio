@@ -1,5 +1,6 @@
 ---
 interface Props {
+  isCurrent?: boolean;
   title: string;
   company: string;
   startDate: string;
@@ -8,7 +9,7 @@ interface Props {
   responsibilities: string[];
 }
 
-const { title, company, startDate, endDate, logo, responsibilities } = Astro.props;
+const { title, company, startDate, endDate, logo, responsibilities, isCurrent } = Astro.props;
 
 // Calculate the duration in milliseconds
 const start = new Date(startDate).getTime();
@@ -20,7 +21,7 @@ const years = Math.floor(duration / 1000 / 60 / 60 / 24 / 365);
 const months = Math.floor(duration / 1000 / 60 / 60 / 24 / 30) % 12;
 ---
 
-<div class="timeline-item">
+<div class={`timeline-item ${isCurrent ? "active" : ""}`}>
   <img class="logo" width="40px" height="40px" src={logo} alt={company} />
   <div class="details">
     <div class="title">{title} <span class="sep">|</span> <span class="company">{company}</span></div>
@@ -39,11 +40,19 @@ const months = Math.floor(duration / 1000 / 60 / 60 / 24 / 30) % 12;
   .timeline-item {
     gap: 1.5rem;
     display: flex;
+    padding: 20px;
+    background: rgb(227 255 233 / 5%);
+    border-left: 10px solid;
+    border-left-color: rgb(153 164 173 / 15%);
+    border-bottom: 1px solid rgb(153 164 173 / 15%);
+    &.active {
+      border-left-color: rgb(134 255 160 / 30%);
+    }
   }
 
   .title {
     font-size: var(--font-size-2xl);
-    color: var(--color-silver-300);
+    color: var(--color-silver-200);
     font-weight: 600;
   }
 
@@ -54,7 +63,8 @@ const months = Math.floor(duration / 1000 / 60 / 60 / 24 / 30) % 12;
   }
 
   .company {
-    color: var(--color-silver-300);
+    font-size: var(--font-size-xl);
+    color: var(--color-silver-400);
   }
 
   .sep {

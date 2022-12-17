@@ -1,9 +1,5 @@
 ---
 import DefaultLayout from '../components/DefaultLayout.astro';
-import { greeting } from "../js/greeting";
-import { yearsInIndustry } from "../js/yearsInIndustry";
-import DevLogos from "../components/DevLogos.astro";
-import TimelineItem from "../components/TimelineItem.astro";
 ---
 
 <DefaultLayout>
@@ -39,7 +35,6 @@ import TimelineItem from "../components/TimelineItem.astro";
 
     <div class="timeline-items">
       <TimelineItem
-        isCurrent
         company="LondonLink"
         title="Senior Software Developer"
         startDate="May 2021"
@@ -95,70 +90,5 @@ import TimelineItem from "../components/TimelineItem.astro";
 </DefaultLayout>
 
 <style lang="scss">
-  .main-section {
-    display: flex;
-    gap: 2rem;
-    margin-top: 1rem;
-    align-items: center;
-  }
 
-  .profile-photo {
-    width: 200px;
-  }
-
-  /* Marquee styles */
-  .marquee {
-    --gap: 1.5rem;
-    position: relative;
-    display: flex;
-    overflow: hidden;
-    user-select: none;
-    gap: var(--gap);
-    margin: 3.5rem 0;
-    &:hover {
-      .marquee-content {
-        animation-play-state: paused;
-      }
-    }
-  }
-
-  .marquee-content {
-    flex-shrink: 0;
-    display: flex;
-    justify-content: space-around;
-    gap: var(--gap);
-    min-width: 100%;
-    animation: scroll 30s linear infinite;
-  }
-
-  @keyframes scroll {
-    from {
-      transform: translateX(0);
-    }
-    to {
-      transform: translateX(calc(-100% - var(--gap)));
-    }
-  }
-
-  /* Pause animation when reduced-motion is set */
-  @media (prefers-reduced-motion: reduce) {
-    .marquee-content {
-      animation-play-state: paused !important;
-    }
-  }
-
-  .sub-heading {
-    margin-top: 0;
-    margin-bottom: 25px;
-    // text-decoration: underline;
-    // text-decoration-color: var(--color-mint);
-    // text-decoration-thickness: 2px;
-    // text-decoration-offset: 5px;
-  }
-
-  .timeline-items {
-    display: flex;
-    flex-direction: column;
-    row-gap: 0rem;
-  }
 </style>
