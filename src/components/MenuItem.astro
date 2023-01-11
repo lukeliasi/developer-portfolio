@@ -23,35 +23,11 @@ const { text, link } = Astro.props;
     transition: all 250ms ease-in-out;
     &:hover {
       text-decoration: none;
+      color: var(--color-mint-300);
+      text-shadow: 0px 6px 18px rgb(21 255 147 / 90%);
     }
     &.active {
-      text-shadow: none;
-    }
-  }
-
-  html.dark {
-    .menu-item-link {
-      &:hover {
-        color: var(--color-mint-300);
-        text-shadow: 0px 6px 18px rgb(21 255 147 / 90%);
-      }
-      &.active {
-        background: rgb(0 255 137 / 10%);
-        border-bottom: 1px solid rgb(0 255 31 / 40%);
-      }
-    }
-  }
-
-  html.light {
-    .menu-item-link {
-      &:hover {
-        color: var(--color-blue-600);
-        text-shadow: 0px 6px 18px rgba(21, 37, 255, 5%);
-      }
-      &.active {
-        background: rgba(4, 0, 255, 0.1);
-        border-bottom: 1px solid rgba(25, 0, 255, 0.4);
-      }
+      text-shadow: 0px 6px 14px rgb(0 255 137 / 90%);
     }
   }
 </style>

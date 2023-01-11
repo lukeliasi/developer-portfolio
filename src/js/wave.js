@@ -103,38 +103,10 @@ const amp = 800;
 const maxLines = 36;
 const speed = 0.002;
 const variators = [];
+const color = "21, 255, 147";
 let canvasWidth;
 let canvasHeight;
 let startY;
-let color;
-
-const darkModeRGB = "21, 255, 147";
-const lightModeRGB = "140, 153, 255";
-
-if (document.documentElement.classList.contains("dark")) {
-  color = darkModeRGB;
-} else {
-  color = lightModeRGB;
-}
-
-const mutationObserver = new MutationObserver(callback)
-
-mutationObserver.observe(
-  document.documentElement,
-  { attributes: true }
-);
-
-function callback(mutationsList) {
-  mutationsList.forEach(mutation => {
-    if (mutation.attributeName === "class") {
-      if (mutation.target.classList.contains("dark")) {
-        color = darkModeRGB;
-      } else {
-        color = lightModeRGB;
-      }
-    }
-  });
-}
 
 for (let i = 0, u = 0; i < maxLines; i++, u += .016) {
   variators[i] = u;

@@ -1,5 +1,4 @@
 import { EventBus } from "./EventBus";
-import { ThemeManager } from "./ThemeManager";
 
 declare global {
   interface Window {
@@ -11,7 +10,6 @@ class App {
   private static _instance: App | null = null;
 
   private eventBus: EventBus | undefined;
-  private themeManager: ThemeManager | undefined;
 
   public static getInstance() {
     if (!App._instance) {
@@ -24,11 +22,6 @@ class App {
   public getEventBus() {
     if (!this.eventBus) this.eventBus = new EventBus();
     return this.eventBus;
-  }
-
-  public getThemeManager() {
-    if (!this.themeManager) this.themeManager = new ThemeManager();
-    return this.themeManager;
   }
 }
 

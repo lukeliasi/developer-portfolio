@@ -37,31 +37,18 @@ const canonical = Astro.props.canonical || undefined;
     <meta property="og:url" content={site_url + (canonical || "")} />
     <meta property="og:image" content={site_url + "og-image.jpg"} />
 
-    <!-- Initially set theme -->
-    <script is:inline>
-      (function() {
-        const theme = localStorage.getItem("theme") || "dark";
-        document.documentElement.classList.add(theme);
-        window.theme = theme;
-      })();
-    </script>
-
     <!-- TODO: Analytics -->
     <!-- <script defer data-domain={site_domain} src={`https://analytics.${site_domain}/js/plausible.js`}></script> -->
   </head>
   <body class="page">
-    <!-- Sounds -->
     <audio src="/sounds/switch.mp3" id="sound_switch" preload="auto" hidden></audio>
 
-    <!-- Header -->
     <Header />
 
-    <!-- Main content -->
     <main>
       <slot />
     </main>
 
-    <!-- Footer -->
     <Footer />
   </body>
 </html>

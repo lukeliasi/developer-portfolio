@@ -1,10 +1,12 @@
 ---
-const currentYear = new Date().getFullYear();
+import globalData from "../data/global.json";
+const currentYear = new Date().getFullYear().toString();
 const socialIconSize = "1.25rem";
+const copywriteYears = currentYear === globalData.websiteLaunchYear ? currentYear : `${globalData.websiteLaunchYear}-${currentYear}`;
 ---
 
 <footer class="container">
-  <p class="legal">Copyright &copy {currentYear} Luke Liasi. Website source code on <a class="dark:text-mint-600 text-blue-600" target="_blank" rel="noreferrer" href="https://github.com/lukeliasi/lukeliasi.com">GitHub</a>.</p>
+  <p class="legal">Copyright &copy {copywriteYears} Luke Liasi. Website source code on <a target="_blank" rel="noreferrer" href="https://github.com/lukeliasi/lukeliasi.com">GitHub</a>.</p>
 
   <ul class="social-icon-list">
     <!-- GitHub -->
@@ -57,18 +59,6 @@ const socialIconSize = "1.25rem";
       &:hover {
         filter: brightness(125%);
       }
-    }
-  }
-
-  html.dark {
-    .legal {
-      color: var(--color-silver-100);
-    }
-  }
-
-  html.light {
-    .legal {
-      color: var(--color-silver-800);
     }
   }
 </style>

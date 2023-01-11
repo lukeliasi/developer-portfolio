@@ -13,7 +13,7 @@ import { yearsInIndustry } from "../js/yearsInIndustry";
     <h2 class="intro">I build compelling <br class="sm:block hidden" />digital experiences.</h2>
     <p class="desc">Software engineer, passionate about solving problems with code.<br class="breakspace" />Over {yearsInIndustry} years of industry experience specialising in <span class="buzzword">JavaScript</span>, <span class="buzzword">React</span> & <span class="buzzword">Node</span>.</p>
 
-    <Button href="/projects" variant="outline">
+    <Button href="/projects" variant="outline" size="lg" colorScheme="green">
       See my projects
       <svg style="margin-left: 5px" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 20 20" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
     </Button>
@@ -51,6 +51,7 @@ import { yearsInIndustry } from "../js/yearsInIndustry";
   }
 
   .intro-welcome {
+    color: var(--color-mint);
     font-family: var(--font-family-IBM-Plex-Mono);
     font-weight: 600;
     font-size: var(--font-size-base);
@@ -62,60 +63,21 @@ import { yearsInIndustry } from "../js/yearsInIndustry";
     overflow: hidden;
     display: inline-block;
     padding: 10px 0;
+    color: white;
   }
 
   .intro {
+    color: var(--color-silver-300);
     font-size: var(--font-size-11xl);
     line-height: 3.25rem;
     margin: 1rem 0;
   }
 
   .desc {
+    color: var(--color-silver-100);
     font-size: var(--font-size-lg);
     line-height: 1.5em;
     margin: 1.5rem 0;
-  }
-
-  .breakspace {
-
-  }
-
-  // Dark mode
-  html.dark {
-    .intro-welcome {
-      color: var(--color-mint);
-    }
-
-    .intro-name {
-      color: white;
-    }
-
-    .intro {
-      color: var(--color-silver-300);
-    }
-
-    .desc {
-      color: var(--color-silver-100);
-    }
-  }
-
-  // Light mode
-  html.light {
-    .intro-welcome {
-      color: var(--color-blue-600);
-    }
-
-    .intro-name {
-      color: var(--color-silver-900);
-    }
-
-    .intro {
-      color: var(--color-silver-700);
-    }
-
-    .desc {
-      color: var(--color-silver-800);
-    }
   }
 </style>
 

@@ -25,6 +25,7 @@ import Menu from "../components/Menu.astro";
   }
 
   .avatar {
+    color: var(--color-silver-100);
     text-decoration: none;
     font-weight: 500;
     display: flex;
@@ -44,17 +45,5 @@ import Menu from "../components/Menu.astro";
 
   .name {
     margin-left: 0.5rem;
-  }
-
-  html.dark {
-    .avatar {
-      color: var(--color-silver-100);
-    }
-  }
-
-  html.light {
-    .avatar {
-      color: var(--color-silver-900);
-    }
   }
 </style>

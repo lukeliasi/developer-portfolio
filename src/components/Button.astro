@@ -2,10 +2,12 @@
 interface Props {
   variant?: "solid" | "outline";
   href?: string;
+  size?: "xs" | "sm" | "md" | "lg" | "xl";
+  colorScheme?: "blue" | "orange" | "green" | "silver";
 }
 
-const { variant = "solid", href } = Astro.props;
-const defaultProps = { class: `button ${variant}` };
+const { variant = "solid", href, size = "md", colorScheme = "green" } = Astro.props;
+const defaultProps = { class: `button ${variant} size-${size} colorScheme-${colorScheme}` };
 ---
 
 {href ? (
@@ -21,70 +23,98 @@ const defaultProps = { class: `button ${variant}` };
 <style lang="scss">
   .button {
     border: 1px solid;
-    border-radius: 2px;
-    padding: 12px 28px;
+    border-radius: 4px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     font-weight: 600;
     line-height: 1rem;
-    font-size: var(--font-size-lg);
     transition: all 150ms ease-in-out;
     cursor: pointer;
     &:hover {
       text-decoration: none;
+      box-shadow: 0 3px 20px rgba(240, 240, 240, 0.25);
     }
-  }
-
-  html.dark {
-    .button {
-      border-color: var(--color-mint);
-      &:hover {
-        text-decoration: none;
-        box-shadow: 0 3px 20px rgb(0 225 121 / 50%);
-        border-color: var(--color-mint-400);
+    &.solid {
+      &.colorScheme-silver {
+        background: var(--color-silver);
+        &:hover {
+          background: var(--color-silver-400);
+        }
       }
-      &.solid {
+      &.colorScheme-green {
         background: var(--color-mint);
-        color: black;
         &:hover {
           background: var(--color-mint-400);
         }
       }
-      &.outline {
-        background: transparent;
+      &.colorScheme-blue {
+        background: var(--color-blue);
+        &:hover {
+          background: var(--color-blue-400);
+        }
+      }
+      &.colorScheme-orange {
+        background: var(--color-orange);
+        &:hover {
+          background: var(--color-orange-400);
+        }
+      }
+    }
+    &.outline {
+      background: transparent;
+      &.colorScheme-silver {
+        border-color: var(--color-silver);
+        color: var(--color-silver);
+        &:hover {
+          background: var(--color-silver-400);
+          color: initial;
+        }
+      }
+      &.colorScheme-green {
+        border-color: var(--color-mint);
         color: var(--color-mint);
         &:hover {
           background: var(--color-mint-400);
           color: initial;
         }
       }
-    }
-  }
-
-  html.light {
-    .button {
-      border-color: var(--color-blue);
-      &:hover {
-        text-decoration: none;
-        box-shadow: 0 3px 20px rgb(0 4 225 / 40%);
-        border-color: var(--color-blue-400);
-      }
-      &.solid {
-        background: var(--color-blue);
-        color: black;
-        &:hover {
-          background: var(--color-blue-400);
-        }
-      }
-      &.outline {
-        background: transparent;
+      &.colorScheme-blue {
+        border-color: var(--color-blue);
         color: var(--color-blue);
         &:hover {
           background: var(--color-blue-400);
-          color: white;
+          color: initial;
         }
       }
+      &.colorScheme-orange {
+        border-color: var(--color-orange);
+        color: var(--color-orange);
+        &:hover {
+          background: var(--color-orange-400);
+          color: initial;
+        }
+      }
+    }
+    &.size-xs {
+      padding: 4px 12px;
+      font-size: var(--font-size-xs);
+    }
+    &.size-sm {
+      padding: 6px 18px;
+      font-size: var(--font-size-sm);
+    }
+    &.size-md {
+      padding: 8px 22px;
+      font-size: var(--font-size-md);
+    }
+    &.size-lg {
+      padding: 12px 28px;
+      font-size: var(--font-size-lg);
+    }
+    &.size-xl {
+      padding: 16px 32px;
+      font-size: var(--font-size-xl);
     }
   }
 </style>

@@ -11,7 +11,6 @@ export interface Subscriber {
 }
 
 export enum EventBusEventIds {
-  THEME_CHANGE
 }
 
 export interface IEventBus {
