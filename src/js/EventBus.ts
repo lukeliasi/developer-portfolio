@@ -1,3 +1,7 @@
+export type EventBusEventIds =
+  | "contactFormSubmit"
+  | "contactFormSubmitStateUpdate"
+
 export interface Registry {
   unregister: () => void;
 }
@@ -8,9 +12,6 @@ export interface Callable {
 
 export interface Subscriber {
   [key: string]: Callable;
-}
-
-export enum EventBusEventIds {
 }
 
 export interface IEventBus {

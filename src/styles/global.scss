@@ -58,6 +58,28 @@ p {
   color: var(--color-orange-200);
 }
 
+.form-control {
+  margin: 10px 0;
+  display: block;
+  width: 100%;
+  label {
+    display: block;
+    margin-bottom: 3px;
+  }
+  input,
+  textarea {
+    box-sizing: border-box;
+    font-size: var(--font-size-base);
+    color: white;
+    display: block;
+    padding: 8px;
+    background: rgb(209 209 209 / 2.5%);
+    border: 1px solid rgb(181 181 181 / 50%);
+    border-radius: 2px;
+    width: 100%;
+  }
+}
+
 /* Animations */
 .text-swipe-animation,
 .text-swipe-animation::after,

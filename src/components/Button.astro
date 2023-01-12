@@ -4,18 +4,35 @@ interface Props {
   href?: string;
   size?: "xs" | "sm" | "md" | "lg" | "xl";
   colorScheme?: "blue" | "orange" | "green" | "silver";
+  style?: string;
+  class?: string;
+  disabled?: boolean;
 }
 
-const { variant = "solid", href, size = "md", colorScheme = "green" } = Astro.props;
-const defaultProps = { class: `button ${variant} size-${size} colorScheme-${colorScheme}` };
+const {
+  variant = "solid",
+  href,
+  size = "md",
+  colorScheme = "green",
+  style,
+  disabled
+} = Astro.props;
+
+const defaultProps: any = {
+  class: `button ${variant} size-${size} colorScheme-${colorScheme} ${Astro.props.class || ""}`,
+};
+
+if (disabled) {
+  defaultProps.disabled = "disabled";
+}
 ---
 
 {href ? (
-  <a {...defaultProps} href={href}>
+  <a {...defaultProps} style={style} href={href}>
     <slot />
   </a>
 ) : (
-  <button {...defaultProps}>
+  <button {...defaultProps} style={style}>
     <slot />
   </button>
 )}
@@ -31,6 +48,10 @@ const defaultProps = { class: `button ${variant} size-${size} colorScheme-${colo
     line-height: 1rem;
     transition: all 150ms ease-in-out;
     cursor: pointer;
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.75;
+    }
     &:hover {
       text-decoration: none;
       box-shadow: 0 3px 20px rgba(240, 240, 240, 0.25);

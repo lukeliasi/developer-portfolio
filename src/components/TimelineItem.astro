@@ -38,6 +38,7 @@ const months = Math.floor(duration / 1000 / 60 / 60 / 24 / 30) % 12;
 
 <style lang="scss">
   .timeline-item {
+    position: relative;
     gap: 1.5rem;
     display: flex;
     padding: 20px;
@@ -57,6 +58,7 @@ const months = Math.floor(duration / 1000 / 60 / 60 / 24 / 30) % 12;
   }
 
   .time {
+    color: var(--color-silver-500);
     font-size: var(--font-size-base);
     font-family: var(--font-family-IBM-Plex-Mono);
     margin-top: 0;
@@ -64,7 +66,7 @@ const months = Math.floor(duration / 1000 / 60 / 60 / 24 / 30) % 12;
 
   .company {
     font-size: var(--font-size-xl);
-    color: var(--color-silver-400);
+    color: var(--color-silver-600);
   }
 
   .sep {
