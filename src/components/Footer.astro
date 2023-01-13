@@ -1,8 +1,8 @@
 ---
-import globalData from "../data/global.json";
 const currentYear = new Date().getFullYear().toString();
 const socialIconSize = "1.25rem";
-const copywriteYears = currentYear === globalData.websiteLaunchYear ? currentYear : `${globalData.websiteLaunchYear}-${currentYear}`;
+const websiteLaunchYear = "2023";
+const copywriteYears = currentYear === websiteLaunchYear ? currentYear : `${websiteLaunchYear}-${currentYear}`;
 ---
 
 <footer class="container">

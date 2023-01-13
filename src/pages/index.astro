@@ -4,8 +4,8 @@ import Button from '../components/Button.astro';
 import { yearsInIndustry } from "../js/yearsInIndustry";
 ---
 
-<DefaultLayout>
-  <section class="container">
+<DefaultLayout documentTitle="Luke Liasi">
+  <section class="container" style="z-index: 1;">
     <h1>
       <span class="intro-welcome">Welcome, my name is <br></span>
       <span class="intro-name text-swipe-animation">Luke Liasi.</span>
@@ -40,7 +40,6 @@ import { yearsInIndustry } from "../js/yearsInIndustry";
     position: absolute;
     right: 0;
     top: 0;
-    z-index: -1;
     overflow: hidden;
     pointer-events: none;
   }

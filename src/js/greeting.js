@@ -1,3 +1,6 @@
+/**
+ * Return a greeting message depending on what time of the day it is
+ */
 const today = new Date();
 const currentHour = today.getHours();
 

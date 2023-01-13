@@ -7,6 +7,7 @@ interface Props {
   style?: string;
   class?: string;
   disabled?: boolean;
+  [key: string]: any;
 }
 
 const {
@@ -15,11 +16,13 @@ const {
   size = "md",
   colorScheme = "green",
   style,
-  disabled
+  disabled,
+  otherProps
 } = Astro.props;
 
 const defaultProps: any = {
   class: `button ${variant} size-${size} colorScheme-${colorScheme} ${Astro.props.class || ""}`,
+  ...otherProps
 };
 
 if (disabled) {
@@ -39,6 +42,7 @@ if (disabled) {
 
 <style lang="scss">
   .button {
+    color: initial;
     border: 1px solid;
     border-radius: 4px;
     display: inline-flex;

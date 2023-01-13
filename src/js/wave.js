@@ -1,3 +1,6 @@
+/**
+ * Home page wave animation
+ */
 const ClassicalNoise = function() {
   const r = Math; // Define random number generator
 

@@ -1,3 +1,6 @@
+/**
+ * Handle AJAX submit of contact form
+ */
 import { app } from "./App";
 
 const eventBus = app.getEventBus();
@@ -22,10 +25,11 @@ export function handleContactFormSubmit() {
     contactForm.addEventListener("submit", async function(event) {
       event.preventDefault();
       const formData = new FormData(contactForm);
-      const formProps = Object.fromEntries(formData);
+      const formValues = Object.fromEntries(formData);
 
       try {
         eventBus.dispatch("contactFormSubmit");
+
         // Reset any existing messages on new submit
         successMessage.style.display = "none";
         errorMessage.style.display = "none";
@@ -39,13 +43,13 @@ export function handleContactFormSubmit() {
           },
           body: JSON.stringify({
             data: {
-              name: formProps.name,
-              email: formProps.email,
-              subject: formProps.subject,
-              message: formProps.message,
+              name: formValues.name,
+              email: formValues.email,
+              subject: formValues.subject,
+              message: formValues.message,
             },
             mailSettings: {
-              replyTo: formProps.email
+              replyTo: formValues.email
             }
           })
         });

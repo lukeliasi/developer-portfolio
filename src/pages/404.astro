@@ -1,1 +1,59 @@
-404
+---
+import DefaultLayout from '../components/DefaultLayout.astro';
+import Button from "../components/Button.astro";
+---
+
+<DefaultLayout documentTitle="Page not found">
+  <section class="container">
+    <div class="box">
+      <svg class="icon" version="1.1" id="_x32_" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" xml:space="preserve">
+        <path fill="#CDFFE8" d="M312.069 53.445c-71.26-71.26-187.194-71.26-258.454 0-71.261 71.26-71.261 187.206 0 258.466 71.26 71.26 187.194 71.26 258.454 0s71.26-187.206 0-258.466zm-25.375 233.091c-57.351 57.34-150.353 57.34-207.704-.011s-57.351-150.353 0-207.693c57.351-57.351 150.342-57.351 207.693 0s57.362 150.342.011 207.704z"/>
+        <path fill="#CDFFE8" d="M101.911 112.531c-29.357 37.725-31.801 89.631-7.321 129.702 1.877 3.087 5.902 4.048 8.978 2.182 3.065-1.888 4.037-5.903 2.16-8.978-21.666-35.456-19.506-81.538 6.469-114.876 2.226-2.837 1.713-6.938-1.135-9.154a6.523 6.523 0 0 0-9.151 1.124zM498.544 447.722l-132.637-129.2c-7.255-7.07-18.84-6.982-26.008.174l-21.033 21.033c-7.156 7.156-7.234 18.742-.153 25.986l129.19 132.636c14.346 17.324 35.542 18.35 51.917 1.964 16.396-16.364 16.037-38.247-1.276-52.593z"/>
+      </svg>
+
+      <h1 class="title">404</h1>
+      <h2 class="subtitle">Sorry, the page could not be found.</h2>
+      <Button size="lg" class="button" href="/">
+        <svg style="margin-right: 5px;" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z"></path></svg>
+        Back to home
+      </Button>
+    </div>
+  </section>
+</DefaultLayout>
+
+<style lang="scss">
+  .box {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    margin-top: 4rem;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .title {
+    display: inline-block;
+    margin: 0;
+    color: var(--color-mint);
+    font-size: var(--font-size-16xl);
+    text-shadow: 0px 6px 14px rgb(0 255 137 / 40%);
+  }
+
+  .subtitle {
+    margin: 0;
+  }
+
+  .button {
+    margin-top: 2rem;
+  }
+
+  .icon {
+    position: relative;
+    bottom: -45px;
+    transform: rotate(-3deg);
+    right: -40px;
+    opacity: 0.5;
+    width: 80px;
+  }
+</style>

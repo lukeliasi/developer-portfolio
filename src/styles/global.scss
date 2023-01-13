@@ -1,4 +1,5 @@
 html, body {
+  background: #031c40;
   color: var(--color-silver-200);
   font-family: 'Mukta', sans-serif;
   font-size: 1em;
@@ -7,7 +8,7 @@ html, body {
 }
 
 .page {
-  background: var(--color-blue-900);
+  background: #031c40;
   background: linear-gradient(0deg, #000c09 0%, #031f49 100%);
   min-height: 100vh;
   display: flex;

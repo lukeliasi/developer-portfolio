@@ -1,6 +1,7 @@
 ---
 interface Props {
   canonical?: string;
+  documentTitle: string;
 }
 
 import "../styles/reset.css";
@@ -20,6 +21,7 @@ const site_domain = import.meta.env.PUBLIC_SITE_DOMAIN;
 
 // Props
 const canonical = Astro.props.canonical || undefined;
+const documentTitle = Astro.props.documentTitle || title;
 ---
 
 <!DOCTYPE html>
@@ -29,7 +31,7 @@ const canonical = Astro.props.canonical || undefined;
     {canonical && <link rel="canonical" href={canonical}>}
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" href="/favicon.png" type="image/png">
-    <title>{title}</title>
+    <title>{documentTitle}</title>
     <meta name="description" content={desc}>
     <meta property="og:title" content={title} />
     <meta property="og:description" content={desc} />
