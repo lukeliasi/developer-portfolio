@@ -4,10 +4,7 @@ interface Props {
   href?: string;
   size?: "xs" | "sm" | "md" | "lg" | "xl";
   colorScheme?: "blue" | "orange" | "green" | "silver";
-  style?: string;
-  class?: string;
-  disabled?: boolean;
-  [key: string]: any;
+  domProps: { [key: string]: any }
 }
 
 const {
@@ -15,27 +12,18 @@ const {
   href,
   size = "md",
   colorScheme = "green",
-  style,
-  disabled,
-  otherProps
+  domProps = {}
 } = Astro.props;
 
-const defaultProps: any = {
-  class: `button ${variant} size-${size} colorScheme-${colorScheme} ${Astro.props.class || ""}`,
-  ...otherProps
-};
-
-if (disabled) {
-  defaultProps.disabled = "disabled";
-}
+const className = `button ${variant} size-${size} colorScheme-${colorScheme} ${Astro.props.class || ""}`;
 ---
 
 {href ? (
-  <a {...defaultProps} style={style} href={href}>
+  <a class={className} href={href} {...domProps}>
     <slot />
   </a>
 ) : (
-  <button {...defaultProps} style={style}>
+  <button class={className} {...domProps}>
     <slot />
   </button>
 )}

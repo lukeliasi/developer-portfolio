@@ -1,16 +1,70 @@
 ---
 import DefaultLayout from '../components/DefaultLayout.astro';
-import Button from "../components/Button.astro";
+import PortfolioItem from '../components/PortfolioItem.astro';
+
+const binanceDCABotRepoRes = await fetch("https://api.github.com/repos/lukeliasi/binance-dca-bot");
+const binanceDCABotRepoResData = await binanceDCABotRepoRes.json();
+const binanceDCABotRepoStarsCount = binanceDCABotRepoResData.stargazers_count;
 ---
 
 <DefaultLayout documentTitle="Projects">
-  <section class="container">
+  <div class="container">
     <h1 class="main-heading text-swipe-animation">Projects</h1>
     <div class="intro">
-      <p>Here are a few things I've built.</p>
+      <p>Welcome to my portfolio, showcasing a selection of projects I've worked on.</p>
     </div>
-  </section>
+
+    <section class="projects">
+      <PortfolioItem
+        title="Quince Players"
+        image="/images/quinceplayers-portfolio.png"
+        projectLink="https://quinceplayers.com"
+        tags={[
+          "JavaScript",
+          "TypeScript",
+          "NodeJS",
+          "Directus",
+          "PostgreSQL",
+          "HTML",
+          "CSS",
+          "Tailwind CSS"
+        ]}>
+        <p slot="subtitle">Website for a theatrical society. Powered by <span class="buzzword">Directus CMS</span> for content management.</p>
+
+        <div slot="description">
+          <p>Built using <span class="buzzword">Node.js</span>, <span class="buzzword">Express</span>, and <span class="buzzword">EJS</span>. The content comes from the Directus API and pages are rendered server-side with dynamic content using <span class="buzzword">EJS</span> as the templating language and <span class="buzzword">TailwindCSS</span> on the client side.</p>
+          <p>The website is optimised for speed and for search engines. Content editors can easily manage current, upcoming and past shows, blog posts and more on the website.</p>
+        </div>
+      </PortfolioItem>
+
+      <PortfolioItem
+        isOpenSource
+        githubStarsCount={binanceDCABotRepoStarsCount}
+        title="Binance DCA Bot"
+        image="/images/binance-dca-bot-portfolio.png"
+        sourceCode="https://github.com/lukeliasi/binance-dca-bot"
+        tags={[
+          "JavaScript",
+          "NodeJS",
+          "Docker",
+          "MongoDB"
+        ]}>
+        <p slot="subtitle">Command-line trading bot using <span class="buzzword">Node.js</span> that connects to the Binance exchange and automatically executes trades via their API.</p>
+
+        <div slot="description">
+          <p>After being frustrated with the lack of tools to automate trades on the Binance platform, I developed this bot. It's open-source on GitHub with over 150 stars and includes a <span class="buzzword">Docker</span> image for easy deployment.</p>
+          <p>The bot can be configured to trade specific currency pairs and includes options for external services such as email notifications through SendGrid and data storage using <span class="buzzword">MongoDB</span> as a storage adaptor.</p>
+        </div>
+      </PortfolioItem>
+    </section>
+  </div>
 </DefaultLayout>
 
 <style lang="scss">
+  .projects {
+    display: flex;
+    flex-direction: column;
+    margin-top: 3rem;
+    row-gap: 2rem;
+  }
 </style>

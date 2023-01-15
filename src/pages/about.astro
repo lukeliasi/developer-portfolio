@@ -2,7 +2,7 @@
 import DefaultLayout from '../components/DefaultLayout.astro';
 import { greeting } from "../js/greeting";
 import { yearsInIndustry } from "../js/yearsInIndustry";
-import DevLogos from "../components/DevLogos.astro";
+import DevLogo, { devIcons } from '../components/DevLogo.astro';
 import TimelineItem from "../components/TimelineItem.astro";
 ---
 
@@ -25,12 +25,12 @@ import TimelineItem from "../components/TimelineItem.astro";
 
   <section class="marquee">
     <div class="marquee-content">
-      <DevLogos />
+      {devIcons.map(devIcon => <DevLogo icon={devIcon.title} />)}
     </div>
 
     <!-- Logos duplicated for scrolling effect -->
     <div aria-hidden="true" class="marquee-content">
-      <DevLogos />
+      {devIcons.map(devIcon => <DevLogo icon={devIcon.title} />)}
     </div>
   </section>
 
