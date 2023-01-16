@@ -38,13 +38,9 @@ const documentTitle = Astro.props.documentTitle || title;
     <meta property="og:type" content="website" />
     <meta property="og:url" content={site_url + (canonical || "")} />
     <meta property="og:image" content={site_url + "og-image.jpg"} />
-
-    <!-- TODO: Analytics -->
-    <!-- <script defer data-domain={site_domain} src={`https://analytics.${site_domain}/js/plausible.js`}></script> -->
+    <script defer data-domain={site_domain} src={`https://analytics.${site_domain}/js/plausible.js`}></script>
   </head>
   <body class="page">
-    <audio src="/sounds/switch.mp3" id="sound_switch" preload="auto" hidden></audio>
-
     <Header />
 
     <main>

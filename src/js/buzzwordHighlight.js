@@ -25,6 +25,8 @@ const buzzwords = [
   "NoSQL",
   "Selenium",
   "Mocha",
+  "Chai",
+  "ESLint",
   "Linux",
   "Docker",
   "AWS",
@@ -43,11 +45,15 @@ const buzzwords = [
   "EJS",
 ];
 
+// Add tags that should be searched for buzzwords
 const paragraphs = document.querySelectorAll("p");
+const lis = document.querySelectorAll("li");
+const divs = document.querySelectorAll("div");
+const tags = [...paragraphs, ...lis, ...divs];
 
 for (const word of buzzwords) {
   const regex = new RegExp(`(\\s|^)(${word})([.,/()"']?)(\\s|$)`, 'g');
-  for (const element of paragraphs) {
+  for (const element of tags) {
     element.innerHTML = element.innerHTML.replace(regex, (match, p1, p2, p3, p4) => `${p1}<span class="buzzword">${p2}</span>${p3}${p4}`);
   }
 }

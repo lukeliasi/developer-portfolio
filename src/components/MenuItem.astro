@@ -7,10 +7,13 @@ interface Props {
 const pathname = new URL(Astro.request.url).pathname;
 
 const { text, link } = Astro.props;
+
+// Compare current URL path to path passed into component, remove trailing slash to keep consistent
+const pathMatch = pathname.replace(/\/$/, '') === link.replace(/\/$/, '');
 ---
 
 <li class="menu-item">
-  <a class={`menu-item-link ${pathname === link ? "active" : ""}`} href={link}>{text}</a>
+  <a class={`menu-item-link ${pathMatch ? "active" : ""}`} href={link}>{text}</a>
 </li>
 
 <style lang="scss">

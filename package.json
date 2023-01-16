@@ -11,12 +11,12 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^1.6.7",
+    "astro": "^1.9.2",
     "tippy.js": "^6.3.7"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.13",
     "cssnano": "^5.1.14",
-    "sass": "^1.56.1"
+    "sass": "^1.57.1"
   }
 }
