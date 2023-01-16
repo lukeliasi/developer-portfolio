@@ -4,7 +4,7 @@ import Button from "../components/Button.astro";
 ---
 
 <nav>
-  <ul>
+  <ul class="menu">
     <MenuItem text="Projects" link="/projects" />
     <MenuItem text="About" link="/about" />
     <MenuItem text="Contact" link="/contact" />
@@ -15,13 +15,61 @@ import Button from "../components/Button.astro";
       </svg>
     </Button>
   </ul>
+
+  <button id="mobile-toggle-menu">
+    <svg class="menu-burger-icon" fill="white" width="32px" height="32px" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+      <path d="M64 384h384v-42.67H64zm0-106.67h384v-42.66H64zM64 128v42.67h384V128z" stroke="none"/>
+    </svg>
+
+    <svg style="display: none;" class="menu-close-icon" fill="white" width="32px" height="32px" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+      <path d="m289.94 256 95-95A24 24 0 0 0 351 127l-95 95-95-95a24 24 0 0 0-34 34l95 95-95 95a24 24 0 1 0 34 34l95-95 95 95a24 24 0 0 0 34-34z" stroke="none"/>
+    </svg>
+  </button>
 </nav>
 
 <style lang="scss">
-  ul {
+  .menu {
+    padding: 0;
     display: inline-flex;
     align-items: center;
     column-gap: 1.55rem;
     list-style-type: none;
+  }
+
+  #mobile-toggle-menu {
+    display: none;
+    background: none;
+    border: none;
+  }
+
+  @media screen and (max-width: 980px) {
+    #mobile-toggle-menu {
+      display: block;
+    }
+
+    .menu {
+      animation: fadeIn ease-in-out 500ms;
+      display: none;
+      &.menu-open {
+        display: flex;
+        position: absolute;
+        left: 0;
+        top: 70px;
+        height: calc(100% - 70px);
+        flex-direction: column;
+        row-gap: 1.75rem;
+        width: 100%;
+        z-index: 5;
+        padding: 15px;
+        margin: 0;
+        background: rgb(3 31 72 / 90%);
+        padding: 2.5rem 0;
+      }
+    }
+  }
+
+  @keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
   }
 </style>

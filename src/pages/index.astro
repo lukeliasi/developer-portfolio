@@ -5,14 +5,14 @@ import { yearsInIndustry } from "../js/yearsInIndustry";
 ---
 
 <DefaultLayout documentTitle="Luke Liasi">
-  <section class="container" style="z-index: 1;">
+  <section class="container" style="z-index: 1; position: relative;">
     <h1>
       <span class="intro-welcome">Welcome, my name is <br></span>
       <span class="intro-name text-swipe-animation">Luke Liasi.</span>
     </h1>
-    <h2 class="intro">I build compelling <br />digital experiences.</h2>
+    <h2 class="intro">I build compelling <br class="intro-break" />digital experiences.</h2>
     <p class="desc">
-      Software engineer, passionate about solving problems with code.<br /> Over {yearsInIndustry} years of industry experience specialising in JavaScript, React & Node.
+      Software engineer, passionate about solving problems with code.<br class="desc-break" /> Over {yearsInIndustry} years of industry experience specialising in JavaScript, React & Node.
     </p>
 
     <Button href="/projects" variant="outline" size="lg" colorScheme="green">
@@ -79,6 +79,32 @@ import { yearsInIndustry } from "../js/yearsInIndustry";
     font-size: var(--font-size-lg);
     line-height: 1.5em;
     margin: 1.5rem 0;
+  }
+
+  @media screen and (max-width: 980px) {
+    h1 {
+      line-height: 1.75rem;
+      margin: 0.5rem 0;
+    }
+
+    .intro-name {
+      font-size: var(--font-size-10xl);
+      line-height: 3rem;
+    }
+
+    .intro {
+      font-size: var(--font-size-3xl);
+      line-height: 2rem;
+      margin: 0.5rem 0;
+    }
+
+    .intro-break {
+      display: none;
+    }
+
+    .desc-break {
+      display: none;
+    }
   }
 </style>
 

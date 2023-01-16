@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 html, body {
   background: #031c40;
   color: var(--color-silver-200);
@@ -161,4 +165,14 @@ p {
   60%, 100% { transform-origin: 0 50%; }
   60% { transform: scaleX(1); }
   100% { transform: scaleX(0); }
+}
+
+@media screen and (max-width: 980px) {
+  .main-heading {
+    font-size: var(--font-size-4xl);
+  }
+
+  .sub-heading {
+    font-size: var(--font-size-2xl);
+  }
 }

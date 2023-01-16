@@ -52,6 +52,7 @@ const copywriteYears = currentYear === websiteLaunchYear ? currentYear : `${webs
   .social-icon-list {
     display: inline-flex;
     align-items: center;
+    padding: 0;
     column-gap: 0.75rem;
     list-style-type: none;
     li {
@@ -59,6 +60,20 @@ const copywriteYears = currentYear === websiteLaunchYear ? currentYear : `${webs
       &:hover {
         filter: brightness(125%);
       }
+    }
+  }
+
+  @media screen and (max-width: 980px) {
+    footer {
+      flex-wrap: wrap;
+      align-items: center;
+      padding-bottom: 5px;
+    }
+
+    .legal {
+      font-size: var(--font-size-xs);
+      line-height: 1.25rem;
+      margin: 0;
     }
   }
 </style>

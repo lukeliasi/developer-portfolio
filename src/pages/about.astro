@@ -157,4 +157,24 @@ import TimelineItem from "../components/TimelineItem.astro";
     flex-direction: column;
     row-gap: 0rem;
   }
+
+
+  @media screen and (max-width: 980px) {
+    .main-section {
+      gap: 1rem;
+      display: block;
+      word-break: break-word;
+    }
+
+    .profile-photo {
+      float: right;
+      width: 152px;
+      margin: 10px;
+    }
+
+    :global(.devicon) {
+      width: 45px !important;
+      height: 45px !important;
+    }
+  }
 </style>

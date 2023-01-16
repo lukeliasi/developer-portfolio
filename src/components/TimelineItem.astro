@@ -86,6 +86,8 @@ const months = Math.floor(duration / 1000 / 60 / 60 / 24 / 30) % 12;
   }
 
   .responsibilities {
+    padding-left: 15px;
+    line-height: 1.5rem;
     li {
       margin: 8px 0;
       &::marker {
@@ -93,6 +95,35 @@ const months = Math.floor(duration / 1000 / 60 / 60 / 24 / 30) % 12;
         font-size: 12px;
         color: var(--color-mint);
       }
+    }
+  }
+
+  @media screen and (max-width: 980px) {
+    .timeline-item {
+      flex-direction: column;
+      margin: 0 -25px;
+      border-width: 5px;
+    }
+
+    .title {
+      font-size: var(--font-size-lg);
+    }
+
+    .company {
+      font-size: var(--font-size-md);
+    }
+
+    .sep {
+      display: none;
+    }
+
+    .time {
+      font-size: var(--font-size-sm);
+    }
+
+    .responsibilities {
+      font-size: var(--font-size-md);
+      line-height: 1.5rem;
     }
   }
 </style>
