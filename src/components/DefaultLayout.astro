@@ -38,7 +38,8 @@ const documentTitle = Astro.props.documentTitle || title;
     <meta property="og:type" content="website" />
     <meta property="og:url" content={site_url + (canonical || "")} />
     <meta property="og:image" content={site_url + "og-image.jpg"} />
-    <script defer data-domain={site_domain} src={`https://analytics.${site_domain}/js/plausible.js`}></script>
+
+    <script defer data-domain={site_domain} src="https://plausible.io/js/script.js"></script>
   </head>
   <body class="page">
     <Header />
