@@ -48,8 +48,7 @@ const buzzwords = [
 // Add tags that should be searched for buzzwords
 const paragraphs = document.querySelectorAll("p");
 const lis = document.querySelectorAll("li");
-const divs = document.querySelectorAll("div");
-const tags = [...paragraphs, ...lis, ...divs];
+const tags = [...paragraphs, ...lis];
 
 for (const word of buzzwords) {
   const regex = new RegExp(`(\\s|^)(${word})([.,/()"']?)(\\s|$)`, 'g');
