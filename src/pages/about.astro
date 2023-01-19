@@ -1,6 +1,5 @@
 ---
 import DefaultLayout from '../components/DefaultLayout.astro';
-import { greeting } from "../js/greeting";
 import { yearsInIndustry } from "../js/yearsInIndustry";
 import DevLogo, { devIcons } from '../components/DevLogo.astro';
 import TimelineItem from "../components/TimelineItem.astro";
@@ -8,7 +7,7 @@ import TimelineItem from "../components/TimelineItem.astro";
 
 <DefaultLayout documentTitle="About">
   <section class="container">
-    <h1 class="main-heading text-swipe-animation">{greeting()}</h1>
+    <h1 class="main-heading text-swipe-animation" id="greeting"></h1>
     <div class="intro">
       <p>I'm Luke, a Senior Software Developer based in the UK with over {yearsInIndustry} years of experience building software.</p>
     </div>
@@ -178,3 +177,9 @@ import TimelineItem from "../components/TimelineItem.astro";
     }
   }
 </style>
+
+<script hoist>
+  import { greeting } from "../js/greeting";
+  const greetingContainer = document.getElementById("greeting");
+  greetingContainer.innerText = greeting();
+</script>
