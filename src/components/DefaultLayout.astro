@@ -2,6 +2,7 @@
 interface Props {
   canonical?: string;
   documentTitle: string;
+  documentDescription?: string;
 }
 
 import "../styles/reset.css";
@@ -15,13 +16,14 @@ import Header from "../components/Header.astro"
 import Footer from "../components/Footer.astro"
 
 const title = import.meta.env.PUBLIC_SITE_NAME;
-const desc = `Software engineer, passionate about solving problems with code. Over ${yearsInIndustry} years of industry experience specialising in JavaScript, React & Node.`;
+const defaultDesc = `Software engineer, passionate about solving problems with code. Over ${yearsInIndustry} years of industry experience specialising in JavaScript, React & Node.`;
 const site_url = Astro.site;
 const site_domain = import.meta.env.PUBLIC_SITE_DOMAIN;
 
 // Props
 const canonical = Astro.props.canonical || undefined;
 const documentTitle = Astro.props.documentTitle || title;
+const documentDescription = Astro.props.documentDescription || defaultDesc;
 ---
 
 <!DOCTYPE html>
@@ -32,9 +34,9 @@ const documentTitle = Astro.props.documentTitle || title;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" href="/favicon.png" type="image/png">
     <title>{documentTitle}</title>
-    <meta name="description" content={desc}>
+    <meta name="description" content={documentDescription}>
     <meta property="og:title" content={title} />
-    <meta property="og:description" content={desc} />
+    <meta property="og:description" content={documentDescription} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={site_url + (canonical || "")} />
     <meta property="og:image" content={site_url + "og-image.jpg"} />
