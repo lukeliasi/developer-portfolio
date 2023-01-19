@@ -1,21 +1,46 @@
 ---
 import DefaultLayout from '../components/DefaultLayout.astro';
 import PortfolioItem from '../components/PortfolioItem.astro';
+import { writeToLocalDataFile, readLocalDataFile } from '../js/localDataManager';
 
-const binanceDCABotRepoRes = await fetch("https://api.github.com/repos/lukeliasi/binance-dca-bot");
-const binanceDCABotRepoResData = await binanceDCABotRepoRes.json();
-const binanceDCABotRepoStarsCount = binanceDCABotRepoResData.stargazers_count;
+// Fetch stars count from GitHub
+async function getBinanceDCABotStars() {
+  try {
+    const res = await fetch("https://api.github.com/repos/lukeliasi/binance-dca-bot");
+    const data = await res.json();
+
+    if (data.stargazers_count) {
+      return data.stargazers_count;
+    } else {
+      // If we get rate limited or GitHub request fails, return the value from cache
+      const valueFromCache = await readLocalDataFile("openSourceProjectStars.binanceDCABot");
+      return valueFromCache || undefined;
+    }
+  } catch(error) {
+    console.log(error);
+  }
+}
+
+const binanceDCABotStars = await getBinanceDCABotStars();
+
+// Cache stars count
+if (binanceDCABotStars) {
+  await writeToLocalDataFile("openSourceProjectStars", {
+    binanceDCABot: binanceDCABotStars
+  });
+}
 ---
 
 <DefaultLayout documentTitle="Projects" documentDescription="Welcome to my portfolio, showcasing a selection of projects I've worked on.">
   <div class="container">
     <h1 class="main-heading text-swipe-animation">Projects</h1>
     <div class="intro">
-      <p>Welcome to my portfolio, showcasing a selection of projects I've worked on.</p>
+      <p>Welcome to my portfolio, showcasing a selection of side projects I've worked on.</p>
     </div>
 
     <section class="projects">
       <PortfolioItem
+        projectYear="2022"
         title="Quince Players"
         image="/images/quinceplayers-portfolio.png"
         projectLink="https://quinceplayers.com"
@@ -38,8 +63,9 @@ const binanceDCABotRepoStarsCount = binanceDCABotRepoResData.stargazers_count;
       </PortfolioItem>
 
       <PortfolioItem
+      projectYear="2021"
         isOpenSource
-        githubStarsCount={binanceDCABotRepoStarsCount}
+        githubStarsCount={binanceDCABotStars}
         title="Binance DCA Bot"
         image="/images/binance-dca-bot-portfolio.png"
         sourceCode="https://github.com/lukeliasi/binance-dca-bot"
@@ -58,6 +84,7 @@ const binanceDCABotRepoStarsCount = binanceDCABotRepoResData.stargazers_count;
       </PortfolioItem>
 
       <PortfolioItem
+        projectYear="2020"
         title="WillenHouse Student Housing"
         image="/images/willenhouse-portfolio.png"
         projectLink="https://willenhouse.com"
@@ -80,6 +107,7 @@ const binanceDCABotRepoStarsCount = binanceDCABotRepoResData.stargazers_count;
       </PortfolioItem>
 
       <PortfolioItem
+        projectYear="2020"
         title="Coinconomics"
         image="/images/coinconomics-portfolio.png"
         projectLink="https://www.coinconomics.com"
@@ -101,23 +129,7 @@ const binanceDCABotRepoStarsCount = binanceDCABotRepoResData.stargazers_count;
       </PortfolioItem>
 
       <PortfolioItem
-        title="Windsor ENT"
-        image="/images/windsorent-portfolio.png"
-        projectLink="https://www.windsor-ent.co.uk"
-        tags={[
-          "HTML",
-          "CSS",
-          "JavaScript",
-        ]}>
-        <p slot="subtitle">Website for a group of ear, nose and throat surgeons built using HTML, CSS, and JavaScript.</p>
-
-        <div slot="description">
-          <p>It is fully responsive, ensuring that the content is easily accessible on any device. The static site is optimised for speed and search engines, providing a seamless user experience and improving visibility for potential patients. </p>
-          <p>The website includes detailed information about the surgeons' qualifications, services offered, and contact information. The site is easy to navigate, making it easy for patients to find the information they need quickly and efficiently.</p>
-        </div>
-      </PortfolioItem>
-
-      <PortfolioItem
+        projectYear="2018"
         title="Childrens Book Author"
         image="/images/fionabarker-portfolio.png"
         projectLink="https://fionabarker.co.uk/"
@@ -134,6 +146,24 @@ const binanceDCABotRepoStarsCount = binanceDCABotRepoResData.stargazers_count;
         <div slot="description">
           <p>Built using WordPress and PHP, the website showcases all of the author's books and allows for easy management and uploading of new book content.</p>
           <p>The website features a custom theme, designed to showcase the books in an attractive and engaging way, with a focus on clean and modern design.</p>
+        </div>
+      </PortfolioItem>
+
+      <PortfolioItem
+        projectYear="2015"
+        title="Windsor ENT"
+        image="/images/windsorent-portfolio.png"
+        projectLink="https://www.windsor-ent.co.uk"
+        tags={[
+          "HTML",
+          "CSS",
+          "JavaScript",
+        ]}>
+        <p slot="subtitle">Website for a group of ear, nose and throat surgeons built using HTML, CSS, and JavaScript.</p>
+
+        <div slot="description">
+          <p>It is fully responsive, ensuring that the content is easily accessible on any device. The static site is optimised for speed and search engines, providing a seamless user experience and improving visibility for potential patients. </p>
+          <p>The website includes detailed information about the surgeons' qualifications, services offered, and contact information. The site is easy to navigate, making it easy for patients to find the information they need quickly and efficiently.</p>
         </div>
       </PortfolioItem>
     </section>
