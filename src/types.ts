@@ -1,3 +1,7 @@
+export type EventBusEventIds =
+  | "contactFormSubmit"
+  | "contactFormSubmitStateUpdate"
+
 export type Skills =
   | "JavaScript"
   | "TypeScript"

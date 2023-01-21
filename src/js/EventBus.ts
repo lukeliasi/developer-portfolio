@@ -1,6 +1,4 @@
-export type EventBusEventIds =
-  | "contactFormSubmit"
-  | "contactFormSubmitStateUpdate"
+import type { EventBusEventIds } from "../types";
 
 export interface Registry {
   unregister: () => void;
