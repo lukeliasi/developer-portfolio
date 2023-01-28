@@ -104,7 +104,7 @@ const perlin = new ClassicalNoise();
 const variation = .0011;
 const amp = 800;
 const maxLines = 36;
-const speed = 0.002;
+const speed = 0.001;
 const variators = [];
 const color = "21, 255, 147";
 let canvasWidth;
@@ -115,13 +115,21 @@ for (let i = 0, u = 0; i < maxLines; i++, u += .016) {
   variators[i] = u;
 }
 
+/*
+  Progressive loading optimization:
+  The resolution of the animation starts at 10 and gradually increases by 10 each frame.
+  Once the resolution reaches 1, the increment is set to 0 so that the animation stops increasing in resolution.
+*/
+let resolution = 10;
+let increment = 10;
+
 function draw() {
   let y;
   for (let i = 0; i <= maxLines; i++) {
     ctx.beginPath();
     ctx.moveTo(0, startY);
 
-    for (let x = 0; x <= canvasWidth; x++) {
+    for (let x = 0; x <= canvasWidth; x += resolution) {
       y = perlin.noise((x * variation + variators[i]), (x * variation), 0);
       ctx.lineTo(x, startY + amp * y);
     }
@@ -132,6 +140,11 @@ function draw() {
     ctx.closePath();
 
     variators[i] += speed;
+  }
+
+  resolution += increment;
+  if (resolution > 1) {
+    increment = 0;
   }
 }
 
