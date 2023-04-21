@@ -24,6 +24,10 @@ const site_domain = import.meta.env.PUBLIC_SITE_DOMAIN;
 const canonical = Astro.props.canonical || undefined;
 const documentTitle = Astro.props.documentTitle || title;
 const documentDescription = Astro.props.documentDescription || defaultDesc;
+
+function shouldLoadAnalytics() {
+  return typeof window !== "undefined" && window.location.hostname === import.meta.env.PUBLIC_SITE_DOMAIN;
+}
 ---
 
 <!DOCTYPE html>
@@ -41,7 +45,9 @@ const documentDescription = Astro.props.documentDescription || defaultDesc;
     <meta property="og:url" content={site_url + (canonical || "")} />
     <meta property="og:image" content={site_url + "images/ogimage.png"} />
 
-    <script async defer data-website-id="dfae00e2-8e26-4b96-a4e5-57cdf5cfce5f" src="https://analytics.lukeliasi.com/umami.js"></script>
+    {shouldLoadAnalytics() && (
+      <script async defer data-website-id="dfae00e2-8e26-4b96-a4e5-57cdf5cfce5f" src="https://analytics.lukeliasi.com/umami.js"></script>
+    )}
   </head>
   <body class="page">
     <Header />
