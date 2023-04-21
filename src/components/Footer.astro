@@ -2,6 +2,13 @@
 const currentYear = new Date().getFullYear().toString();
 const socialIconSize = "1.25rem";
 const websiteLaunchYear = "2023";
+
+/**
+ * If the current year equals the year the site launches, e.g output:
+ *  - © 2023
+ * Otherwise copyright notice outputs site launched to current year, e.g output:
+ *  - © 2023-2025
+ */
 const copywriteYears = currentYear === websiteLaunchYear ? currentYear : `${websiteLaunchYear}-${currentYear}`;
 ---
 
