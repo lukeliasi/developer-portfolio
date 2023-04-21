@@ -29,4 +29,5 @@ export type Skills =
   | "Figma"
   | "WordPress"
   | "Directus"
-  | "SanityCMS";
+  | "SanityCMS"
+  | "Redis";
