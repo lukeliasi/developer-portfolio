@@ -1,5 +1,6 @@
 /**
  * Handle AJAX submit of contact form
+ * Contact me for access to the FormZen form service
  */
 import { app } from "./App";
 
