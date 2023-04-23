@@ -26,7 +26,7 @@ const documentTitle = Astro.props.documentTitle || title;
 const documentDescription = Astro.props.documentDescription || defaultDesc;
 
 function shouldLoadAnalytics() {
-  return typeof window !== "undefined" && window.location.hostname === import.meta.env.PUBLIC_SITE_DOMAIN;
+  return import.meta.env.MODE === 'production';
 }
 ---
 
