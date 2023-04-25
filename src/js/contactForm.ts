@@ -2,23 +2,43 @@
  * Handle AJAX submit of contact form
  * Contact me for access to the FormZen form service
  */
-import { app } from "./App";
+const submitButton = document.querySelector(".contact-form-submit-button") as HTMLButtonElement;
+const submitButtonLoadingSpinner = document.querySelector("#contact-form-submit-button-spinner") as HTMLDivElement;
 
-const eventBus = app.getEventBus();
+function setLoadingState(isLoading: boolean) {
+  if (isLoading) {
+    submitButton.setAttribute("disabled", "");
+    submitButtonLoadingSpinner.style.display = "block";
+  } else {
+    submitButton.removeAttribute("disabled");
+    submitButtonLoadingSpinner.style.display = "none";
+  }
+}
 
-type ContactFormSubmitStates = "uninitialized" | "loading" | "error" | "ok";
+async function submitForm(formValues: any) {
+  const res = await fetch("https://formzen.io/api/forms/Eg4rQD8Fuv/submit", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      data: {
+        name: formValues.name,
+        email: formValues.email,
+        subject: formValues.subject,
+        message: formValues.message,
+      },
+      mailSettings: {
+        replyTo: formValues.email
+      }
+    })
+  });
 
-let CURRENT_CONTACT_FORM_SUBMIT_STATE: ContactFormSubmitStates = "uninitialized";
-
-function updateContactFormSubmitState(newState: ContactFormSubmitStates) {
-  CURRENT_CONTACT_FORM_SUBMIT_STATE = newState;
-  eventBus.dispatch("contactFormSubmitStateUpdate", newState);
+  return await res.json();
 }
 
 export function handleContactFormSubmit() {
   const contactForm = document.querySelector("#contact-form") as HTMLFormElement;
-  const submitButton = document.querySelector(".contact-form-submit-button") as HTMLButtonElement;
-  const submitButtonLoadingSpinner = document.querySelector("#contact-form-submit-button-spinner") as HTMLDivElement;
   const successMessage = document.querySelector(".contact-form-message-success") as HTMLDivElement;
   const errorMessage = document.querySelector(".contact-form-message-error") as HTMLDivElement;
 
@@ -28,66 +48,25 @@ export function handleContactFormSubmit() {
       const formData = new FormData(contactForm);
       const formValues = Object.fromEntries(formData);
 
+      // Reset any existing messages on new submit
+      successMessage.style.display = "none";
+      errorMessage.style.display = "none";
+
+      setLoadingState(true);
+
       try {
-        eventBus.dispatch("contactFormSubmit");
-
-        // Reset any existing messages on new submit
-        successMessage.style.display = "none";
-        errorMessage.style.display = "none";
-
-        updateContactFormSubmitState("loading");
-
-        const res = await fetch("https://formzen.io/api/forms/Eg4rQD8Fuv/submit", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            data: {
-              name: formValues.name,
-              email: formValues.email,
-              subject: formValues.subject,
-              message: formValues.message,
-            },
-            mailSettings: {
-              replyTo: formValues.email
-            }
-          })
-        });
-
-        const data = await res.json();
+        const data = await submitForm(formValues);
 
         if (data.status === "success") {
-          updateContactFormSubmitState("ok");
+          successMessage.style.display = "block";
           contactForm.reset();
         } else {
-          updateContactFormSubmitState("error");
+          errorMessage.style.display = "block";
         }
       } catch (error) {
-        updateContactFormSubmitState("error");
-      }
-    });
-
-    // Listen to form submit state updates
-    eventBus.register("contactFormSubmitStateUpdate", (newState: ContactFormSubmitStates) => {
-      // Handing loading by disabling button and showing spinner
-      if (submitButtonLoadingSpinner) {
-        if (newState === "loading") {
-          submitButton.setAttribute("disabled", "");
-          submitButtonLoadingSpinner.style.display = "block";
-        } else {
-          submitButton.removeAttribute("disabled");
-          submitButtonLoadingSpinner.style.display = "none";
-        }
-      }
-
-      // Handle success/error message
-      if (newState === "ok") {
-        successMessage.style.display = "block";
-      }
-
-      if (newState === "error") {
         errorMessage.style.display = "block";
+      } finally {
+        setLoadingState(false);
       }
     });
   }
