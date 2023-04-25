@@ -7,26 +7,27 @@ interface Props {
   endDate?: string;
   logo: string;
   responsibilities: string[];
+  workLocation: "Remote" | "On-Site" | "Hybrid"
 }
 
-const { title, company, startDate, endDate, logo, responsibilities, isCurrent } = Astro.props;
+const { title, company, startDate, endDate, logo, responsibilities, isCurrent, workLocation } = Astro.props;
 
 // Calculate the duration in milliseconds
 const start = new Date(startDate).getTime();
-const end = endDate ? new Date(endDate).getTime() : Date.now();
+const end = endDate ? new Date(endDate).getTime() : new Date().getTime()
 const duration = end - start;
 
 // Format the duration as "X years Y months"
 const years = Math.floor(duration / 1000 / 60 / 60 / 24 / 365);
-const months = Math.floor(duration / 1000 / 60 / 60 / 24 / 30) % 12;
+const months = Math.floor((duration - years * 1000 * 60 * 60 * 24 * 365) / 1000 / 60 / 60 / 24 / 30);
 ---
 
 <div class={`timeline-item ${isCurrent ? "active" : ""}`}>
   <img class="logo" width="40px" height="40px" src={logo} alt={company} />
   <div class="details">
-    <div class="title">{title} <span class="sep">|</span> <span class="company">{company}</span></div>
+    <div class="title">{title} <span class="sep">/</span> <span class="company">{company}</span> <span class="sep">/</span> <span class={`location ${workLocation}`}>{workLocation}</span></div>
     <p class="time">
-      {startDate} - {endDate || "Present"}
+      {startDate} - {endDate || "Present"} <span class="duration">/ {years > 0 && `${years}y`} {months > 0 && `${months}m`}</span>
     </p>
     <ul class="responsibilities">
       {responsibilities.map((responsibility) => (
@@ -58,19 +59,44 @@ const months = Math.floor(duration / 1000 / 60 / 60 / 24 / 30) % 12;
   }
 
   .time {
-    color: var(--color-silver-500);
+    color: var(--color-silver-300);
     font-size: var(--font-size-base);
     font-family: var(--font-family-IBM-Plex-Mono);
     margin-top: 0;
   }
 
+  .duration {
+    font-size: var(--font-size-sm);
+    color: var(--color-silver-400);
+  }
+
   .company {
-    font-size: var(--font-size-xl);
-    color: var(--color-silver-600);
+    font-size: var(--font-size-lg);
+    color: var(--color-silver-300);
+  }
+
+  .location {
+    font-size: var(--font-size-sm);
+    background: rgb(63, 63, 63);
+    color: white;
+    padding: 1px 10px;
+    border-radius: 4px;
+  }
+
+  .location.Remote {
+    background: #73007e;
+  }
+
+  .location.On-Site {
+    background: #0048b3;
+  }
+
+  .location.Hybrid {
+    background: #0089b3;
   }
 
   .sep {
-    margin: 0 5px;
+    margin: 0 2.5px;
     color: var(--color-silver-800);
   }
 
