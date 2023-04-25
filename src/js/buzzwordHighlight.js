@@ -5,6 +5,7 @@ const buzzwords = [
   "Adobe Illustrator",
   "Adobe Photoshop",
   "Adobe XD",
+  "Astro",
   "AWS",
   "Chai",
   "CSS",

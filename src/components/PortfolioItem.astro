@@ -33,7 +33,7 @@ const {
       <h2 class="title">
         {title}
         {isOpenSource && (
-          <div class="openSource">
+          <a class="openSource" href={sourceCode} target="_blank" rel="noopener noreferrer">
             <span class="open-source-badge">Open Source</span>
             {githubStarsCount && (
               <div class="ghStars" title="GitHub Stars">
@@ -42,8 +42,8 @@ const {
                 </svg>
                 {githubStarsCount}
               </div>
-              )}
-          </div>
+            )}
+          </a>
         )}
       </h2>
 
@@ -158,6 +158,10 @@ const {
     gap: 1rem;
   }
 
+  .openSource:hover {
+    text-decoration: none;
+  }
+
   @media screen and (max-width: 1360px) {
     .project-year {
       font-size: var(--font-size-xl);
@@ -202,3 +206,11 @@ const {
     }
   }
 </style>
+
+<script>
+  import tippy from 'tippy.js';
+
+  tippy('.ghStars', {
+    content: "GitHub Stargazers",
+  });
+</script>
