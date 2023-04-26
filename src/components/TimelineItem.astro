@@ -53,6 +53,10 @@ const months = Math.floor((duration - years * 1000 * 60 * 60 * 24 * 365) / 1000 
   }
 
   .title {
+    display: flex;
+    align-items: center;
+    column-gap: 5px;
+    flex-wrap: wrap;
     font-size: var(--font-size-2xl);
     color: var(--color-silver-200);
     font-weight: 600;
@@ -132,6 +136,9 @@ const months = Math.floor((duration - years * 1000 * 60 * 60 * 24 * 365) / 1000 
 
     .title {
       font-size: var(--font-size-lg);
+      column-gap: 15px;
+      row-gap: 5px;
+      margin-bottom: 15px;
     }
 
     .company {
