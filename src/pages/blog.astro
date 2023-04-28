@@ -1,0 +1,20 @@
+---
+import DefaultLayout from '../components/LayoutDefault.astro';
+const allPosts = await Astro.glob('./blog/*.{md,mdx}');
+---
+
+<DefaultLayout documentTitle="Blog" documentDescription="The page could not be found.">
+  <section class="container">
+    <h1 class="main-heading text-swipe-animation">Blog</h1>
+    <div class="intro">
+      <p>Sharing Code, Experience, and Insights</p>
+    </div>
+
+    {allPosts.map((post) => <li><a href={post.url}>{post.frontmatter.title}</a></li>)}
+
+  </section>
+</DefaultLayout>
+
+<style lang="scss">
+
+</style>
