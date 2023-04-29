@@ -5,62 +5,60 @@ interface Props {
   documentDescription?: string;
 }
 
-import "../styles/reset.css";
-import 'tippy.js/dist/tippy.css';
-import "../styles/fonts.css";
-import "../styles/vars.css";
-import "../styles/global.scss";
-import { yearsInIndustry } from "../js/yearsInIndustry";
-
 import Header from "../components/Header.astro"
 import Footer from "../components/Footer.astro"
-
-const title = import.meta.env.PUBLIC_SITE_NAME;
-const defaultDesc = `Software engineer, passionate about solving problems with code. Over ${yearsInIndustry} years of industry experience specialising in JavaScript, React & Node.`;
-const site_url = Astro.site;
-const site_domain = import.meta.env.PUBLIC_SITE_DOMAIN;
+import Head from "./Head.astro";
 
 // Props
-const canonical = Astro.props.canonical || undefined;
-const documentTitle = Astro.props.documentTitle || title;
-const documentDescription = Astro.props.documentDescription || defaultDesc;
-
-function shouldLoadAnalytics() {
-  return import.meta.env.MODE === 'production';
-}
+const canonical = Astro.props.canonical;
+const documentTitle = Astro.props.documentTitle;
+const documentDescription = Astro.props.documentDescription;
 
 const { frontmatter } = Astro.props;
+
+const publishedAtDate = new Date(frontmatter.publishedAt);
+const publishedAtDateFriendly = publishedAtDate.toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+});
 ---
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    {canonical && <link rel="canonical" href={canonical}>}
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" href="/favicon.png" type="image/png">
-    <title>{documentTitle}</title>
-    <meta name="description" content={documentDescription}>
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={documentDescription} />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content={site_url + (canonical || "")} />
-    <meta property="og:image" content={site_url + "images/ogimage.png"} />
-
-    {shouldLoadAnalytics() && (
-      <script async src="https://analytics.lukeliasi.com/script.js" data-website-id="8fcf015d-55ce-4f7c-a4b4-4c8d000ecb9c"></script>
-    )}
-  </head>
+  <Head
+    documentTitle={documentTitle}
+    documentDescription={documentDescription}
+    canonical={canonical}
+  />
   <body class="page">
     <Header />
 
     <main>
       <img class="blog-cover-image" src={frontmatter.image.url} alt={frontmatter.image.alt}>
       <div class="container">
-        <h1 class="main-heading text-swipe-animation">{frontmatter.title}</h1>
+        <div class="blog-wrapper">
+          <div class="blog-content">
+            <div class="blog-header-section">
+              <h1 class="main-heading text-swipe-animation">{frontmatter.title}</h1>
+              <div class="blog-post-meta">
+                <div class="blog-post-date">{publishedAtDateFriendly}</div>
+                <div class="blog-post-reading-time">/ {frontmatter.minutesRead}</div>
+              </div>
+            </div>
+            <slot /> <!-- Content -->
+            [Newsletter sign-up form]
+            [giscus]
+          </div>
+          <aside>
+            Luke Liasi (avatar photo)
+            socials
+            share post
+            recent posts
+            sign up newsletter
+          </aside>
+        </div>
       </div>
-      <!-- TODO: Sidebar -->
-      <slot />
     </main>
 
     <Footer />
@@ -68,18 +66,90 @@ const { frontmatter } = Astro.props;
 </html>
 
 <style lang="scss">
-  main {
-    flex-grow: 1;
-  }
-
   .blog-cover-image {
-    height: 300px;
+    height: 325px;
     object-fit: cover;
     width: 100%;
+    object-position: center;
+  }
+
+  .blog-header-section {
+    margin-bottom: 50px;
+  }
+
+  .blog-post-date {
+    font-family: var(--font-family-IBM-Plex-Mono);
+    color: var(--color-mint);
+  }
+
+  .blog-post-reading-time {
+    font-family: var(--font-family-IBM-Plex-Mono);
+    color: var(--color-silver-100);
+  }
+
+  .blog-post-meta {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .blog-wrapper {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .blog-wrapper .blog-content {
+    flex: 3; /* this will take up 3/4 of the available space */
+    padding: 10px;
+    max-width: 920px;
+  }
+
+  .blog-wrapper aside {
+    flex: 1; /* this will take up 1/4 of the available space */
+    padding: 10px;
+    height: auto;
+  }
+
+  :global(p) {
+    font-weight: 300;
+  }
+
+  :global(h2, h3, h4, h5, h6) {
+    margin: 2.5rem 0 1rem 0;
+  }
+
+  :global(.astro-code) {
+    padding: 10px;
+  }
+
+  :global(code) {
+    background: #0d1117;
+  }
+
+  :global(img) {
+    max-width: 100%;
+  }
+
+  @media screen and (max-width: 980px) {
+    .blog-cover-image {
+      height: 125px;
+    }
+
+    .blog-wrapper {
+      flex-direction: column;
+    }
+
+    .blog-wrapper slot {
+      order: 2;
+    }
+
+    .blog-wrapper aside {
+      order: 1;
+    }
+  }
+
+  @media screen and (max-width: 1200px) {
+    .blog-cover-image {
+      height: 225px;
+    }
   }
 </style>
-
-<script hoist>
-  import "../js/buzzwordHighlight.js";
-  import "../js/mobileMenu.js";
-</script>
