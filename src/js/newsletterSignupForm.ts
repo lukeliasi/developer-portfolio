@@ -2,12 +2,12 @@
  * Handle AJAX submit of newsletter signup form
  * Contact me for access to the FormZen form service
  */
-function newsletterSignupFormInit() {
-  const newsletterSignupForm = document.querySelector("#newsletter-signup-form") as HTMLFormElement;
-  const successMessage = document.querySelector("#newsletter-signup-form .form-success") as HTMLDivElement;
-  const errorMessage = document.querySelector("#newsletter-signup-form .form-error") as HTMLDivElement;
-  const submitButton = document.querySelector("#newsletter-signup-form .submit-button") as HTMLButtonElement;
-  const submitButtonLoadingSpinner = document.querySelector("#newsletter-signup-form .submit-button-spinner") as HTMLDivElement;
+function newsletterSignupFormInit(formClass: string) {
+  const newsletterSignupForm = document.querySelector(`.${formClass}`) as HTMLFormElement;
+  const successMessage = document.querySelector(`.newsletter-signup-form.${formClass} .form-success`) as HTMLDivElement;
+  const errorMessage = document.querySelector(`.newsletter-signup-form.${formClass} .form-error`) as HTMLDivElement;
+  const submitButton = document.querySelector(`.newsletter-signup-form.${formClass} .submit-button`) as HTMLButtonElement;
+  const submitButtonLoadingSpinner = document.querySelector(`.newsletter-signup-form.${formClass} .submit-button-spinner`) as HTMLDivElement;
 
   function setLoadingState(isLoading: boolean) {
     if (isLoading) {
@@ -66,4 +66,5 @@ function newsletterSignupFormInit() {
   }
 }
 
-newsletterSignupFormInit();
+newsletterSignupFormInit("newsletter-signup-form-sidebar");
+newsletterSignupFormInit("newsletter-signup-form-post-end");

@@ -1,16 +1,23 @@
 ---
 import Alert from "./Alert.astro";
 
+interface Props {
+  location: "sidebar" | "post-end";
+}
+
+const { location } = Astro.props;
+
+
 const pathname = new URL(Astro.request.url).pathname;
 ---
 
-<form id="newsletter-signup-form">
+<form class={`newsletter-signup-form newsletter-signup-form-${location}`}>
   <h3 class="title">Join my newsletter</h3>
   <p class="subtitle">Subscribe to my newsletter and stay connected with all my latest posts.</p>
 
   <div class="form-control">
     <div class="input-wrapper">
-      <input class="email-input" placeholder="Email" id="email" name="email" type="email" required />
+      <input class="email-input" placeholder="Email" name="email" type="email" required />
       <input type="hidden" name="page" value={pathname}>
 
       <button class="submit-button" type="submit">
@@ -39,7 +46,7 @@ const pathname = new URL(Astro.request.url).pathname;
 </script>
 
 <style lang="scss">
-  #newsletter-signup-form {
+  .newsletter-signup-form {
     margin-bottom: 15px;
     margin-top: 15px;
     padding-bottom: 15px;
@@ -78,7 +85,7 @@ const pathname = new URL(Astro.request.url).pathname;
     gap: 5px;
   }
 
-  #newsletter-signup-form .submit-button-spinner {
+  .newsletter-signup-form .submit-button-spinner {
     display: none;
     animation-name: rotate;
     animation-duration: 1s;
