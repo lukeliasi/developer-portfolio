@@ -10,7 +10,7 @@ const allPosts = await Astro.glob('./blog/*.{md,mdx}');
       <p>Sharing Code, Experience, and Insights</p>
     </div>
 
-    {allPosts.map((post) => <li><a href={post.url}>{post.frontmatter.title}</a></li>)}
+    {allPosts.filter(post => post.frontmatter.draft !== true).map((post) => <li><a href={post.url}>{post.frontmatter.title}</a></li>)}
 
   </section>
 </DefaultLayout>

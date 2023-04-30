@@ -1,0 +1,45 @@
+---
+import Button from "./Button.astro";
+
+---
+
+<form action="">
+  <h3 class="title">Join my newsletter</h3>
+  <p class="subtitle">Subscribe to my newsletter and stay connected with all my latest posts.</p>
+
+  <div class="form-control">
+    <div class="input-wrapper">
+      <input class="email-input" placeholder="Enter your email" id="email" name="email" type="email" />
+      <button class="submit-button" type="submit">Subscribe</button>
+      <!-- <Button size="sm" domProps={{ style: { borderRadius: "0 4px 4px 0" } }}>Subscribe</Button> -->
+    </div>
+  </div>
+</form>
+
+<style lang="scss">
+  .input-wrapper {
+    display: flex;
+  }
+
+  .email-input {
+    border-radius: 4px 0 0 4px;
+  }
+
+  .title {
+    margin-bottom: 5px;
+  }
+
+  .subtitle {
+    font-size: var(--font-size-sm);
+    line-height: 1.15rem;
+  }
+
+  .submit-button {
+    border-radius: 0 4px 4px 0;
+    border: 0;
+    background: var(--color-mint);
+    font-weight: 600;
+    padding: 0 12px;
+    font-size: var(--font-size-sm);
+  }
+</style>

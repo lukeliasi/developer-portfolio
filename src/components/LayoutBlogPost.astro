@@ -8,6 +8,7 @@ interface Props {
 import Header from "../components/Header.astro"
 import Footer from "../components/Footer.astro"
 import Head from "./Head.astro";
+import Sidebar from "./Sidebar.astro";
 
 // Props
 const canonical = Astro.props.canonical;
@@ -47,16 +48,10 @@ const publishedAtDateFriendly = publishedAtDate.toLocaleDateString('en-US', {
               </div>
             </div>
             <slot /> <!-- Content -->
-            [Newsletter sign-up form]
+            [share post]
             [giscus]
           </div>
-          <aside>
-            Luke Liasi (avatar photo)
-            socials
-            share post
-            recent posts
-            sign up newsletter
-          </aside>
+          <Sidebar />
         </div>
       </div>
     </main>
@@ -95,17 +90,16 @@ const publishedAtDateFriendly = publishedAtDate.toLocaleDateString('en-US', {
   .blog-wrapper {
     display: flex;
     justify-content: space-between;
+    gap: 50px
   }
 
   .blog-wrapper .blog-content {
     flex: 3; /* this will take up 3/4 of the available space */
-    padding: 10px;
     max-width: 920px;
   }
 
-  .blog-wrapper aside {
+  .blog-wrapper :global(aside) {
     flex: 1; /* this will take up 1/4 of the available space */
-    padding: 10px;
     height: auto;
   }
 
