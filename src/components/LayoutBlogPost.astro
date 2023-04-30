@@ -22,7 +22,7 @@ const publishedAtDateFriendly = friendlyDate(frontmatter.publishedAt);
 <html lang="en">
   <Head
     documentTitle={frontmatter.title}
-    documentDescription={frontmatter.title}
+    documentDescription={frontmatter.excerpt}
     canonical={frontmatter.url}
     ogimage={import.meta.env.PUBLIC_SITE_URL + frontmatter.image.url}
   />
