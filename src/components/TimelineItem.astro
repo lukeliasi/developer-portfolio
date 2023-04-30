@@ -12,14 +12,25 @@ interface Props {
 
 const { title, company, startDate, endDate, logo, responsibilities, isCurrent, workLocation } = Astro.props;
 
-// Calculate the duration in milliseconds
-const start = new Date(startDate).getTime();
-const end = endDate ? new Date(endDate).getTime() : new Date().getTime()
-const duration = end - start;
+// Create date objects
+const start = new Date(startDate);
+const end = endDate ? new Date(endDate) : new Date();
 
-// Format the duration as "X years Y months"
-const years = Math.floor(duration / 1000 / 60 / 60 / 24 / 365);
-const months = Math.floor((duration - years * 1000 * 60 * 60 * 24 * 365) / 1000 / 60 / 60 / 24 / 30);
+// Initial calculations for year and month differences
+let yearDifference = end.getFullYear() - start.getFullYear();
+let monthDifference = end.getMonth() - start.getMonth();
+
+// Check if end date is earlier in the year than start date
+const isEndDateEarlierInYear = monthDifference < 0 || (monthDifference === 0 && end.getDate() < start.getDate());
+
+if (isEndDateEarlierInYear) {
+  yearDifference--;
+  monthDifference += 12;
+}
+
+// The final number of years and months
+const years = yearDifference;
+const months = monthDifference;
 ---
 
 <div class={`timeline-item ${isCurrent ? "active" : ""}`}>
