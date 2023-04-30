@@ -182,14 +182,15 @@ const {
   }
 
   @media screen and (max-width: 980px) {
+    .portfolio-item-wrapper:nth-child(even) .portfolio-item {
+      flex-direction: column;
+    }
+
     .portfolio-item {
       gap: 1.5rem;
       margin: 0 -25px;
       border-radius: 0;
       flex-direction: column;
-      &:nth-child(even) {
-        flex-direction: column;
-      }
     }
 
     .image {
