@@ -1,0 +1,84 @@
+---
+const allPosts = await Astro.glob('../pages/blog/*.{md,mdx}');
+const pathname = new URL(Astro.request.url).pathname;
+---
+
+<section class="latest-posts">
+  <h2 class="title">Latest posts</h2>
+  <div class="posts-wrapper">
+    {allPosts
+      .filter(post => post.frontmatter.draft !== true)
+      .filter(post => post.url !== pathname)
+      .sort((a, b) => {
+        // Sort newest posts first
+        return new Date(b.frontmatter.publishedAt).getTime() - new Date(a.frontmatter.publishedAt).getTime();
+      })
+      .slice(0, 3) // Show first 3 latest posts
+      .map((post) => {
+        return (
+          <a href={post.url} class="post-link">
+            <article class="post">
+              <img width="75" class="post-image" src={post.frontmatter.image.url} alt={post.frontmatter.image.alt} />
+              <div class="post-title-area">
+                <span class="post-title">{post.frontmatter.title}</span>
+                <span class="post-read-button">Read ›</span>
+              </div>
+            </article>
+          </a>
+        );
+      })}
+  </div>
+</section>
+
+<style lang="scss">
+  .latest-posts {
+    margin-bottom: 25px;
+    padding-bottom: 25px;
+  }
+
+  .title {
+    font-size: var(--font-size-2xl);
+    color: var(--color-silver-300);
+    font-weight: 300;
+    margin-bottom: 25px;
+    margin-top: 0;
+  }
+
+  .post {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+  }
+
+  .post-link {
+    color: var(--color-silver-200);
+  }
+
+  .post-link:hover {
+    color: var(--color-silver-100);
+    text-decoration: none;
+  }
+
+  .post-title {
+    font-weight: 600;
+    line-height: 1.35rem;
+    margin-top: -5px;
+    display: block;
+  }
+
+  .post-image {
+    border-radius: 6px;
+  }
+
+  .post-read-button {
+    display: block;
+    margin-top: 5px;
+    color: var(--color-mint-500);
+  }
+
+  .posts-wrapper {
+    gap: 35px;
+    display: flex;
+    flex-direction: column;
+  }
+</style>

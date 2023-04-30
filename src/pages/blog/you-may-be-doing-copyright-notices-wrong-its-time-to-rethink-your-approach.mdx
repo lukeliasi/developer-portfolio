@@ -1,0 +1,148 @@
+---
+layout: "../../components/LayoutBlogPost.astro"
+title: "You may be doing Copyright Notices wrong: It's time to rethink your approach"
+excerpt: "In this post, I challenge the traditional approach to website copyright notices, arguing that many may be using the incorrect format. I suggest shifting from the common format of Copyright © [CURRENT_YEAR] [COMPANY] to Copyright © [START_YEAR] – [CURRENT_YEAR] [COMPANY], thus correctly representing the original publication date and offering additional benefits."
+image:
+    url: "/images/blog/cover_copyright.jpeg"
+    alt: "Copyright symbol"
+publishedAt: 2023-04-30
+---
+
+Copyright is a legal concept that provides creators with exclusive rights over their original works. On websites, copyright notices inform users that the content is protected and cannot be copied, distributed, or altered without permission. However, you might be using the wrong format for your copyright notice.
+
+## The common misconception
+Many people believe that the standard copyright format should be:
+
+`Copyright © [CURRENT_YEAR] [COMPANY]`
+
+However, this format can be misleading. The purpose of a copyright notice is to indicate the first date of publication for all content on the website. Consequently, the date should not be changed every year, as this would alter the "first publication" date.
+
+## The correct approach
+Instead of using the standard format, consider the following alternative:
+
+`Copyright © [START_YEAR] – [CURRENT_YEAR] [COMPANY]`
+
+This format not only signifies the correct "first publication" date but also provides other benefits.
+
+### Benefits of including a start date
+By including a start date in your copyright notice, you can:
+- Demonstrate your company's experience and longevity, conveying trustworthiness to your audience
+- Facilitate tracking and protecting your intellectual property over time
+- Emphasize your commitment to providing up-to-date and relevant content
+
+## Code snippets
+The code snippets provided below will display the start year and the current year, or only the current year if the start year is the same as the current year:
+
+### JavaScript
+```js
+function getCopyright(startYear) {
+  var currentYear = new Date().getFullYear();
+
+  if (startYear === currentYear) {
+    return "Copyright &copy; " + currentYear + " Your Company";
+  } else {
+    return "Copyright &copy; " + startYear + " - " + currentYear + " Your Company";
+  }
+}
+
+var copyrightNotice = getCopyright(2010); // Replace 2010 with your start year
+console.log(copyrightNotice); // "Copyright © 2010 - 2023 Your Company"
+```
+
+### PHP
+```php
+function getCopyright($startYear) {
+  $currentYear = date("Y");
+
+  if ($startYear == $currentYear) {
+    return "Copyright &copy; $currentYear Your Company";
+  } else {
+    return "Copyright &copy; $startYear - $currentYear Your Company";
+  }
+}
+
+$copyrightNotice = getCopyright(2010); // Replace 2010 with your start year
+echo $copyrightNotice; // "Copyright © 2010 - 2023 Your Company"
+```
+
+### Python
+```python
+from datetime import datetime
+
+def get_copyright(start_year):
+    current_year = datetime.now().year
+
+    if start_year == current_year:
+        return f"Copyright &copy; {current_year} Your Company"
+    else:
+        return f"Copyright &copy; {start_year} - {current_year} Your Company"
+
+copyright_notice = get_copyright(2010)  # Replace 2010 with your start year
+print(copyright_notice) # "Copyright © 2010 - 2023 Your Company"
+```
+
+### Ruby
+```ruby
+def get_copyright(start_year)
+  current_year = Time.now.year
+
+  if start_year == current_year
+    return "Copyright &copy; #{current_year} Your Company"
+  else
+    return "Copyright &copy; #{start_year} - #{current_year} Your Company"
+  end
+end
+
+copyright_notice = get_copyright(2010) # Replace 2010 with your start year
+puts copyright_notice # "Copyright © 2010 - 2023 Your Company"
+```
+
+### Java
+```java
+import java.time.Year;
+
+public class CopyrightNotice {
+  public static String getCopyright(int startYear) {
+    int currentYear = Year.now().getValue();
+
+    if (startYear == currentYear) {
+      return "Copyright &copy; " + currentYear + " Your Company";
+    } else {
+      return "Copyright &copy; " + startYear + " - " + currentYear + " Your Company";
+    }
+  }
+
+  public static void main(String[] args) {
+    String copyrightNotice = getCopyright(2010); // Replace with your start year
+    System.out.println(copyrightNotice); // "Copyright © 2010 - 2023 Your Company"
+  }
+}
+```
+
+### C#
+```csharp
+using System;
+
+class Program
+{
+  static string GetCopyright(int startYear)
+  {
+    int currentYear = DateTime.Now.Year;
+
+    if (startYear == currentYear)
+    {
+      return $"Copyright &copy; {currentYear} Your Company";
+    }
+    else
+    {
+      return $"Copyright &copy; {startYear} - {currentYear} Your Company";
+    }
+  }
+
+  static void Main()
+  {
+    var copyrightNotice = GetCopyright(2010); // Replace 2010 with your start year
+    Console.WriteLine(copyrightNotice); //"Copyright © 2010 - 2023 Your Company"
+  }
+}
+```

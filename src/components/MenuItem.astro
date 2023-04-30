@@ -17,9 +17,13 @@ const pathMatch = pathname.replace(/\/$/, '') === link.replace(/\/$/, '');
 </li>
 
 <style lang="scss">
+  .menu-item {
+    margin-bottom: 0;
+  }
+
   .menu-item-link {
     padding: 5px 12px;
-    font-size: var(--font-size-lg);
+    font-size: var(--font-size-base);
     color: var(--color-silver-100);
     font-family: var(--font-family-IBM-Plex-Mono);
     font-weight: 500;

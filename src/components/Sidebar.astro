@@ -1,0 +1,72 @@
+---
+import LatestPosts from "./LatestPosts.astro";
+import NewsletterSignupForm from "./NewsletterSignupForm.astro";
+import Socials from "./Socials.astro";
+---
+
+<aside class="sidebar">
+  <div class="sidebar-inner">
+    <div class="profile">
+      <img width="75px" class="profile-pic" src="/images/profile-pic.jpg" alt="Luke Liasi profile picture" />
+      <div class="intro-socials">
+        <p class="intro">I'm Luke, a Senior Software Developer with over 10 years of experience building software.</p>
+        <Socials
+          showText={false}
+          iconSize="1.5rem"
+          orientation="horizontal"
+          gap="0.5rem"
+        />
+      </div>
+    </div>
+
+    <div class="sidebar-newsletter-wrapper">
+      <NewsletterSignupForm />
+    </div>
+
+    <LatestPosts />
+  </div>
+</aside>
+
+<style lang="scss">
+  .sidebar {
+    padding-top: 25px;
+    width: 250px;
+  }
+
+  .sidebar-inner {
+    top: 25px;
+    position: sticky;
+  }
+
+  .intro {
+    font-size: var(--font-size-sm);
+    color: var(--color-silver-200);
+    font-weight: 500;
+    margin-top: 0;
+    line-height: 1.2rem;
+  }
+
+  .profile {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+  }
+
+  .profile-pic {
+    border-radius: 50%;
+    align-self: flex-start;
+  }
+
+  @media screen and (max-width: 1200px) {
+    // Don't need to show newsletter sign up on mobile
+    // as when the page is stacked, there is already a newsletter signup
+    .sidebar-newsletter-wrapper {
+      display: none;
+    }
+
+    .sidebar {
+      width: 100%;
+    }
+  }
+</style>

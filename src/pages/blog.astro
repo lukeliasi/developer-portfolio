@@ -1,0 +1,120 @@
+---
+import DefaultLayout from '../components/LayoutDefault.astro';
+import { friendlyDate } from '../js/friendlyDate';
+const allPosts = await Astro.glob('./blog/*.{md,mdx}');
+const pathname = new URL(Astro.request.url).pathname;
+---
+
+<DefaultLayout documentTitle="Blog" documentDescription="Sharing Code, Experience, and Insights">
+  <section class="container">
+    <h1 class="main-heading text-swipe-animation">Blog</h1>
+    <div class="intro">
+      <p>Sharing Code, Experience, and Insights</p>
+    </div>
+
+    <section class="posts">
+      {allPosts
+        .filter(post => post.frontmatter.draft !== true)
+        .filter(post => post.url !== pathname)
+        .sort((a, b) => {
+          // Sort newest posts first
+          return new Date(b.frontmatter.publishedAt).getTime() - new Date(a.frontmatter.publishedAt).getTime();
+        })
+        .map((post) => {
+
+          const publishedAtDateFriendly = friendlyDate(post.frontmatter.publishedAt);
+
+          return (
+            <a href={post.url} class="post-link">
+              <article class="post">
+                <img width="150" class="post-image" src={post.frontmatter.image.url} alt={post.frontmatter.image.alt} />
+                <div class="post-title-area">
+                  <span class="post-title">{post.frontmatter.title}</span>
+                  <div class="post-meta">
+                    <div class="post-date">{publishedAtDateFriendly}</div>
+                    <div class="post-reading-time">  {post.frontmatter.minutesRead}</div>
+                  </div>
+                  <p class="post-excerpt">{post.frontmatter.excerpt} <span class="post-read-button">Read More ›</span></p>
+                </div>
+              </article>
+            </a>
+          );
+        })}
+    </section>
+  </section>
+</DefaultLayout>
+
+<style lang="scss">
+  .posts {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 75px;
+  }
+
+  .post {
+    display: flex;
+    gap: 25px;
+  }
+
+  .post-image {
+    align-self: flex-start;
+  }
+
+  .post-link:hover {
+    text-decoration: none;
+    .post-image {
+      filter: brightness(110%);
+    }
+  }
+
+  .post-title {
+    font-size: var(--font-size-4xl);
+    font-weight: 400;
+    color: var(--color-silver-100);
+    max-width: 800px;
+    display: block;
+  }
+
+  .post-date {
+    font-family: var(--font-family-IBM-Plex-Mono);
+    color: var(--color-mint-500);
+    font-weight: 600;
+  }
+
+  .post-reading-time {
+    font-family: var(--font-family-IBM-Plex-Mono);
+    color: var(--color-silver-400);
+  }
+
+  .post-meta {
+    margin-top: 5px;
+    margin-bottom: 15px;
+    display: flex;
+    gap: 1rem;
+  }
+
+  .post-excerpt {
+    color: var(--color-silver-200);
+    max-width: 800px;
+  }
+
+  .post-read-button {
+    color: var(--color-silver-100);
+    font-weight: 700;
+  }
+
+  @media screen and (max-width: 980px) {
+    .post {
+      flex-direction: column;
+    }
+
+    .post-image {
+      width: 100px;
+    }
+
+    .posts {
+      gap: 50px;
+    }
+  }
+</style>

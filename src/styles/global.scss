@@ -26,6 +26,10 @@ html, body {
   position: fixed;
 }
 
+.content-main {
+  flex: 1;
+}
+
 .container {
   max-width: 1280px;
   margin: 0 auto;
@@ -57,11 +61,15 @@ a:hover {
   color: var(--color-silver-100);
 }
 
-p {
+p, ul {
   color: var(--color-silver-200);
   font-size: var(--font-size-lg);
   margin: 0.5rem 0 0.75rem 0;
   line-height: 1.65rem;
+}
+
+li {
+  margin-bottom: 1rem;
 }
 
 .buzzword {
