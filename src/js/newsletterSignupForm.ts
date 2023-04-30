@@ -1,0 +1,69 @@
+/**
+ * Handle AJAX submit of newsletter signup form
+ * Contact me for access to the FormZen form service
+ */
+function newsletterSignupFormInit() {
+  const contactForm = document.querySelector("#newsletter-signup-form") as HTMLFormElement;
+  const successMessage = document.querySelector("#newsletter-signup-form .form-success") as HTMLDivElement;
+  const errorMessage = document.querySelector("#newsletter-signup-form .form-error") as HTMLDivElement;
+  const submitButton = document.querySelector("#newsletter-signup-form .submit-button") as HTMLButtonElement;
+  const submitButtonLoadingSpinner = document.querySelector("#newsletter-signup-form .submit-button-spinner") as HTMLDivElement;
+
+  function setLoadingState(isLoading: boolean) {
+    if (isLoading) {
+      submitButton.setAttribute("disabled", "");
+      submitButtonLoadingSpinner.style.display = "block";
+    } else {
+      submitButton.removeAttribute("disabled");
+      submitButtonLoadingSpinner.style.display = "none";
+    }
+  }
+
+  async function submitForm(formValues: any) {
+    const res = await fetch("https://formzen.io/api/forms/K7S8JH4ZQ1/submit", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        data: {
+          email: formValues.email,
+          page: formValues.page,
+        }
+      })
+    });
+
+    return await res.json();
+  }
+
+  if (contactForm) {
+    contactForm.addEventListener("submit", async function(event) {
+      event.preventDefault();
+      const formData = new FormData(contactForm);
+      const formValues = Object.fromEntries(formData);
+
+      // Reset any existing messages on new submit
+      successMessage.style.display = "none";
+      errorMessage.style.display = "none";
+
+      setLoadingState(true);
+
+      try {
+        const data = await submitForm(formValues);
+
+        if (data.status === "success") {
+          successMessage.style.display = "block";
+          contactForm.reset();
+        } else {
+          errorMessage.style.display = "block";
+        }
+      } catch (error) {
+        errorMessage.style.display = "block";
+      } finally {
+        setLoadingState(false);
+      }
+    });
+  }
+}
+
+newsletterSignupFormInit();

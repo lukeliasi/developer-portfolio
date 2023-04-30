@@ -9,11 +9,8 @@ import Header from "../components/Header.astro"
 import Footer from "../components/Footer.astro"
 import Head from "./Head.astro";
 import Sidebar from "./Sidebar.astro";
-
-// Props
-const canonical = Astro.props.canonical;
-const documentTitle = Astro.props.documentTitle;
-const documentDescription = Astro.props.documentDescription;
+import NewsletterSignupForm from "./NewsletterSignupForm.astro";
+import ShareBar from "./ShareBar.astro";
 
 const { frontmatter } = Astro.props;
 
@@ -28,9 +25,10 @@ const publishedAtDateFriendly = publishedAtDate.toLocaleDateString('en-US', {
 <!DOCTYPE html>
 <html lang="en">
   <Head
-    documentTitle={documentTitle}
-    documentDescription={documentDescription}
-    canonical={canonical}
+    documentTitle={frontmatter.title}
+    documentDescription={frontmatter.title}
+    canonical={frontmatter.url}
+    ogimage={import.meta.env.PUBLIC_SITE_URL + frontmatter.image.url}
   />
   <body class="page">
     <Header />
@@ -47,10 +45,17 @@ const publishedAtDateFriendly = publishedAtDate.toLocaleDateString('en-US', {
                 <div class="blog-post-reading-time">/ {frontmatter.minutesRead}</div>
               </div>
             </div>
+
             <slot /> <!-- Content -->
-            [share post]
-            [giscus]
+
+            <div class="bottom-bar">
+              <ShareBar />
+              <NewsletterSignupForm />
+            </div>
+
+            <div class="giscus"></div>
           </div>
+
           <Sidebar />
         </div>
       </div>
@@ -90,16 +95,14 @@ const publishedAtDateFriendly = publishedAtDate.toLocaleDateString('en-US', {
   .blog-wrapper {
     display: flex;
     justify-content: space-between;
-    gap: 50px
+    gap: 75px
   }
 
   .blog-wrapper .blog-content {
-    flex: 3; /* this will take up 3/4 of the available space */
-    max-width: 920px;
+    flex: 1;
   }
 
   .blog-wrapper :global(aside) {
-    flex: 1; /* this will take up 1/4 of the available space */
     height: auto;
   }
 
@@ -123,7 +126,22 @@ const publishedAtDateFriendly = publishedAtDate.toLocaleDateString('en-US', {
     max-width: 100%;
   }
 
+  .bottom-bar {
+    border-top: 1px solid var(--color-silver-800);
+    padding-top: 25px;
+    margin-top: 25px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+
   @media screen and (max-width: 980px) {
+    .bottom-bar {
+      flex-direction: column;
+    }
+  }
+
+  @media screen and (max-width: 1200px) {
     .blog-cover-image {
       height: 125px;
     }
@@ -140,10 +158,21 @@ const publishedAtDateFriendly = publishedAtDate.toLocaleDateString('en-US', {
       order: 1;
     }
   }
-
-  @media screen and (max-width: 1200px) {
-    .blog-cover-image {
-      height: 225px;
-    }
-  }
 </style>
+
+<script  src="https://giscus.app/client.js"
+  data-repo="lukeliasi/lukeliasi.com"
+  data-repo-id="R_kgDOIbHCUQ"
+  data-category="Announcements"
+  data-category-id="DIC_kwDOIbHCUc4CWKCu"
+  data-mapping="title"
+  data-strict="0"
+  data-reactions-enabled="1"
+  data-emit-metadata="0"
+  data-input-position="top"
+  data-theme="dark"
+  data-lang="en"
+  data-loading="lazy"
+  crossorigin="anonymous"
+  async>
+</script>

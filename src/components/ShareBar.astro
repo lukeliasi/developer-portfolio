@@ -1,0 +1,87 @@
+---
+const pathname = new URL(Astro.request.url).pathname;
+---
+
+<div class="share-bar">
+  <p class="share-intro">
+    If you liked this post, feel free to spread the word!
+  </p>
+
+  <ul class="share-list">
+    <li class="share-item" title="Share on Twitter">
+      <a href={`https://twitter.com/intent/tweet?url=${import.meta.env.PUBLIC_SITE_DOMAIN}${pathname}`} target="_blank">
+        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" height="2rem" width="2rem" xmlns="http://www.w3.org/2000/svg"><path d="M928 254.3c-30.6 13.2-63.9 22.7-98.2 26.4a170.1 170.1 0 0 0 75-94 336.64 336.64 0 0 1-108.2 41.2A170.1 170.1 0 0 0 672 174c-94.5 0-170.5 76.6-170.5 170.6 0 13.2 1.6 26.4 4.2 39.1-141.5-7.4-267.7-75-351.6-178.5a169.32 169.32 0 0 0-23.2 86.1c0 59.2 30.1 111.4 76 142.1a172 172 0 0 1-77.1-21.7v2.1c0 82.9 58.6 151.6 136.7 167.4a180.6 180.6 0 0 1-44.9 5.8c-11.1 0-21.6-1.1-32.2-2.6C211 652 273.9 701.1 348.8 702.7c-58.6 45.9-132 72.9-211.7 72.9-14.3 0-27.5-.5-41.2-2.1C171.5 822 261.2 850 357.8 850 671.4 850 843 590.2 843 364.7c0-7.4 0-14.8-.5-22.2 33.2-24.3 62.3-54.4 85.5-88.2z"></path></svg>
+      </a>
+    </li>
+    <li class="share-item copy-link" title="Copy Link">
+      <button class="copy-link-button">
+        <svg stroke="currentColor" fill="currentColor" height="1.6rem" width="1.6rem" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path fill="currentColor" d="M16.444 2a5.588 5.588 0 0 0-3.945 1.585l-.01.01-.793.793a1 1 0 0 0 1.415 1.413l.787-.787A3.588 3.588 0 0 1 16.426 4c.943.008 1.847.39 2.516 1.063A3.653 3.653 0 0 1 20 7.606a3.655 3.655 0 0 1-1.009 2.555l-2.756 2.776a3.574 3.574 0 0 1-4.273.62 3.615 3.615 0 0 1-1.16-1.013 1 1 0 1 0-1.605 1.193 5.615 5.615 0 0 0 1.8 1.571 5.582 5.582 0 0 0 6.657-.962l2.763-2.783.012-.012a5.654 5.654 0 0 0 1.57-3.963 5.653 5.653 0 0 0-1.638-3.934A5.589 5.589 0 0 0 16.444 2Z" />
+          <path fill="currentColor" d="M10.713 8.014a5.576 5.576 0 0 0-4.367 1.64l-2.763 2.783-.012.012a5.655 5.655 0 0 0-1.57 3.963 5.654 5.654 0 0 0 1.638 3.934A5.589 5.589 0 0 0 7.556 22a5.588 5.588 0 0 0 3.945-1.585l.013-.012.787-.793a1 1 0 0 0-1.419-1.41l-.78.787A3.588 3.588 0 0 1 7.573 20a3.589 3.589 0 0 1-2.516-1.063A3.653 3.653 0 0 1 4 16.394 3.655 3.655 0 0 1 5.01 13.84l2.756-2.776a3.575 3.575 0 0 1 4.273-.62c.454.25.849.595 1.16 1.013a1 1 0 0 0 1.605-1.193 5.616 5.616 0 0 0-1.8-1.571 5.58 5.58 0 0 0-2.29-.678Z" />
+        </svg>
+      </button>
+    </li>
+  </ul>
+</div>
+
+<style lang="scss">
+  .share-intro {
+    font-weight: 600;
+  }
+
+  .share-list {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    li {
+      display: inline-block;
+      margin-right: 10px;
+    }
+  }
+
+  .copy-link-button {
+    color: var(--color-mint);
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+  }
+</style>
+
+<script>
+  import tippy, { createSingleton } from 'tippy.js';
+
+  const tippyInstances = tippy(".share-item", {
+    content: (reference: any) => reference.getAttribute("title"),
+  });
+
+  const singleton = createSingleton(tippyInstances, {
+    moveTransition: 'transform 0.2s ease-out',
+    hideOnClick: false
+  });
+
+  singleton.enable();
+
+  /**
+   * Handle copy to clipboard for link share item
+   */
+  const copyLinkButton = document.querySelector(".copy-link-button");
+  const copyLinkItem = document.querySelector(".copy-link");
+
+  if (copyLinkButton && copyLinkItem) {
+    copyLinkButton.addEventListener("click", async function() {
+      await navigator.clipboard.writeText(window.location.href);
+      copyLinkItem.setAttribute('title', 'Copied!');
+
+
+      // Update tooltip content to "Copied!"
+      const instance = tippyInstances.find(instance => instance.reference === copyLinkItem);
+
+      if (instance) {
+        instance.setContent('Copied!');
+        instance.show();
+      }
+    });
+  }
+</script>

@@ -19,14 +19,18 @@ import Socials from "./Socials.astro";
       </div>
     </div>
 
+    <div class="sidebar-newsletter-wrapper">
+      <NewsletterSignupForm />
+    </div>
+
     <LatestPosts />
-    <NewsletterSignupForm />
   </div>
 </aside>
 
 <style lang="scss">
   .sidebar {
     padding-top: 25px;
+    width: 250px;
   }
 
   .sidebar-inner {
@@ -45,13 +49,24 @@ import Socials from "./Socials.astro";
   .profile {
     display: flex;
     gap: 15px;
-    margin-bottom: 25px;
-    padding-bottom: 25px;
-    border-bottom: 1px solid var(--color-silver-800);
+    margin-bottom: 15px;
+    padding-bottom: 15px;
   }
 
   .profile-pic {
     border-radius: 50%;
     align-self: flex-start;
+  }
+
+  @media screen and (max-width: 1200px) {
+    // Don't need to show newsletter sign up on mobile
+    // as when the page is stacked, there is already a newsletter signup
+    .sidebar-newsletter-wrapper {
+      display: none;
+    }
+
+    .sidebar {
+      width: 100%;
+    }
   }
 </style>
