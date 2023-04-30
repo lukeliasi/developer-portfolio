@@ -11,15 +11,11 @@ import Head from "./Head.astro";
 import Sidebar from "./Sidebar.astro";
 import NewsletterSignupForm from "./NewsletterSignupForm.astro";
 import ShareBar from "./ShareBar.astro";
+import { friendlyDate } from "../js/friendlyDate";
 
 const { frontmatter } = Astro.props;
 
-const publishedAtDate = new Date(frontmatter.publishedAt);
-const publishedAtDateFriendly = publishedAtDate.toLocaleDateString('en-US', {
-  year: 'numeric',
-  month: 'long',
-  day: 'numeric'
-});
+const publishedAtDateFriendly = friendlyDate(frontmatter.publishedAt);
 ---
 
 <!DOCTYPE html>
@@ -33,11 +29,13 @@ const publishedAtDateFriendly = publishedAtDate.toLocaleDateString('en-US', {
   <body class="page">
     <Header />
 
-    <main>
+    <main class="content-main">
       <img class="blog-cover-image" src={frontmatter.image.url} alt={frontmatter.image.alt}>
       <div class="container">
         <div class="blog-wrapper">
           <div class="blog-content">
+            <a class="back-to-posts" href="/blog">← Back to posts</a>
+
             <div class="blog-header-section">
               <h1 class="main-heading text-swipe-animation">{frontmatter.title}</h1>
               <div class="blog-post-meta">
@@ -128,12 +126,25 @@ const publishedAtDateFriendly = publishedAtDate.toLocaleDateString('en-US', {
 
   .bottom-bar {
     border-top: 1px solid var(--color-silver-800);
+    border-bottom: 1px solid var(--color-silver-800);
     padding-top: 25px;
     margin-top: 25px;
+    padding-bottom: 25px;
+    margin-bottom: 25px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
   }
 
+  .back-to-posts {
+    position: sticky;
+    top: 0;
+    display: block;
+    margin-top: 15px;
+    background: #031d40;
+    padding: 10px 0;
+    z-index: 1;
+  }
 
   @media screen and (max-width: 980px) {
     .bottom-bar {

@@ -26,6 +26,10 @@ html, body {
   position: fixed;
 }
 
+.content-main {
+  flex: 1;
+}
+
 .container {
   max-width: 1280px;
   margin: 0 auto;

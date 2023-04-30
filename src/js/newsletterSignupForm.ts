@@ -3,7 +3,7 @@
  * Contact me for access to the FormZen form service
  */
 function newsletterSignupFormInit() {
-  const contactForm = document.querySelector("#newsletter-signup-form") as HTMLFormElement;
+  const newsletterSignupForm = document.querySelector("#newsletter-signup-form") as HTMLFormElement;
   const successMessage = document.querySelector("#newsletter-signup-form .form-success") as HTMLDivElement;
   const errorMessage = document.querySelector("#newsletter-signup-form .form-error") as HTMLDivElement;
   const submitButton = document.querySelector("#newsletter-signup-form .submit-button") as HTMLButtonElement;
@@ -36,10 +36,10 @@ function newsletterSignupFormInit() {
     return await res.json();
   }
 
-  if (contactForm) {
-    contactForm.addEventListener("submit", async function(event) {
+  if (newsletterSignupForm) {
+    newsletterSignupForm.addEventListener("submit", async function(event) {
       event.preventDefault();
-      const formData = new FormData(contactForm);
+      const formData = new FormData(newsletterSignupForm);
       const formValues = Object.fromEntries(formData);
 
       // Reset any existing messages on new submit
@@ -53,7 +53,7 @@ function newsletterSignupFormInit() {
 
         if (data.status === "success") {
           successMessage.style.display = "block";
-          contactForm.reset();
+          newsletterSignupForm.reset();
         } else {
           errorMessage.style.display = "block";
         }
