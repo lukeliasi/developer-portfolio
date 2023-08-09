@@ -7,6 +7,7 @@ const buzzwords = [
   "Adobe XD",
   "Astro",
   "AWS",
+  "S3",
   "Chai",
   "CSS",
   "Directus CMS",

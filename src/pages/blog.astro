@@ -27,7 +27,7 @@ const pathname = new URL(Astro.request.url).pathname;
           return (
             <a href={post.url} class="post-link">
               <article class="post">
-                <img width="150" class="post-image" src={post.frontmatter.image.url} alt={post.frontmatter.image.alt} />
+                <img width="200" class="post-image" src={post.frontmatter.image.url} alt={post.frontmatter.image.alt} />
                 <div class="post-title-area">
                   <span class="post-title">{post.frontmatter.title}</span>
                   <div class="post-meta">
