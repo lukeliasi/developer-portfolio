@@ -32,6 +32,7 @@ async function getRepoStars(repo: string) {
 const starsCount = {
   binanceBot: await getRepoStars("lukeliasi/binance-dca-bot"),
   lukeliasi: await getRepoStars("lukeliasi/lukeliasi.com"),
+  databaseBackupsS3: await getRepoStars("lukeliasi/database-backups-s3"),
 }
 ---
 
@@ -43,6 +44,24 @@ const starsCount = {
     </div>
 
     <section class="projects">
+      <PortfolioItem
+        isOpenSource
+        sourceCode="https://github.com/lukeliasi/database-backups-s3"
+        githubStarsCount={starsCount.databaseBackupsS3}
+        projectYear="2023"
+        title="Database S3 backups"
+        image="/images/databaseS3Backups-portfolio.png"
+        tags={[
+          "JavaScript"
+        ]}>
+        <p slot="subtitle">This script is designed to automate the process of backing up various databases to AWS S3. It supports PostgreSQL, MySQL, and MongoDB.</p>
+
+        <div slot="description">
+          <p>When initialized, the script reads database connection URIs from environment variables.</p>
+          <p>Scheduled through a cron job, it dumps the databases, compresses the data, and transfers the files to a predetermined AWS S3 bucket.</p>
+        </div>
+      </PortfolioItem>
+
       <PortfolioItem
         isOpenSource
         sourceCode="https://github.com/lukeliasi/lukeliasi.com"
