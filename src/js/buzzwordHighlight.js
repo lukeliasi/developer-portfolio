@@ -37,6 +37,7 @@ const buzzwords = [
   "React",
   "Redis",
   "REST/GraphQL",
+  "Ruby on Rails",
   "SanityCMS",
   "Sass",
   "Selenium",
