@@ -21,13 +21,13 @@ async function getRepoStars(repo: string) {
       // If we get rate limited or GitHub request fails, return the value from cache
       const valueFromCache = existingCache[repo];
 
-      return valueFromCache || 0;
+      return valueFromCache || undefined;
     }
   } catch (error) {
     console.log(error);
     // Fallback to cache on error
     const existingCache = await readLocalDataFile("openSourceProjectStars") || {};
-    return existingCache[repo] || 0;
+    return existingCache[repo] || undefined;
   }
 }
 
