@@ -10,22 +10,24 @@ async function getRepoStars(repo: string) {
     const data = await res.json();
 
     const stars = data.stargazers_count;
-    const existingCache = await readLocalDataFile("openSourceProjectStars");
+    const existingCache = await readLocalDataFile("openSourceProjectStars") || {};
 
-    if (stars) {
+    if (stars !== undefined) {
       // Cache stars count
       await writeToLocalDataFile("openSourceProjectStars", { ...existingCache, [repo]: stars });
 
       return stars;
     } else {
       // If we get rate limited or GitHub request fails, return the value from cache
-      const cacheFile = await readLocalDataFile(`openSourceProjectStars`);
-      const valueFromCache = cacheFile[repo];
+      const valueFromCache = existingCache[repo];
 
-      return valueFromCache || undefined;
+      return valueFromCache || 0;
     }
-  } catch(error) {
+  } catch (error) {
     console.log(error);
+    // Fallback to cache on error
+    const existingCache = await readLocalDataFile("openSourceProjectStars") || {};
+    return existingCache[repo] || 0;
   }
 }
 

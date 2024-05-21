@@ -1,5 +1,5 @@
-
-import { writeFile, readFile, access } from 'node:fs/promises';
+import { writeFile, readFile, access, constants, mkdir } from 'node:fs/promises';
+import { dirname } from 'path';
 
 interface Data {
   [key: string]: any;
@@ -7,9 +7,18 @@ interface Data {
 
 const dataFile = './src/data/data.json';
 
+async function ensureFileExists(file: string): Promise<void> {
+  try {
+    await access(file, constants.F_OK);
+  } catch {
+    await mkdir(dirname(file), { recursive: true });
+    await writeFile(file, '{}');
+  }
+}
+
 export async function writeToLocalDataFile(key: string, value: any): Promise<void> {
   try {
-    await access(dataFile);
+    await ensureFileExists(dataFile);
     let data: Data = {};
     try {
       data = JSON.parse(await readFile(dataFile, 'utf8')) as Data;
@@ -17,7 +26,7 @@ export async function writeToLocalDataFile(key: string, value: any): Promise<voi
       console.log(err);
     }
     data[key] = value;
-    await writeFile(dataFile, JSON.stringify(data));
+    await writeFile(dataFile, JSON.stringify(data, null, 2));
   } catch (err) {
     console.error(err);
   }
@@ -25,7 +34,7 @@ export async function writeToLocalDataFile(key: string, value: any): Promise<voi
 
 export async function readLocalDataFile(key: string): Promise<any> {
   try {
-    await access(dataFile);
+    await ensureFileExists(dataFile);
     let data: Data = {};
     try {
       data = JSON.parse(await readFile(dataFile, 'utf8')) as Data;
@@ -38,6 +47,7 @@ export async function readLocalDataFile(key: string): Promise<any> {
     let result = data;
     for (const k of keys) {
       result = result[k];
+      if (result === undefined) break;
     }
 
     return result;
