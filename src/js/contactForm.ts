@@ -22,7 +22,7 @@ async function submitForm(formValues: any) {
       "Content-Type": "application/json"
     },
     body: JSON.stringify({
-      formId: "01J4WTF1TCCY0B45VFGAHTT08M",
+      form_id: "01J4WTF1TCCY0B45VFGAHTT08M",
       data: {
         name: formValues.name,
         email: formValues.email,
