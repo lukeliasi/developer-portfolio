@@ -16,20 +16,18 @@ function setLoadingState(isLoading: boolean) {
 }
 
 async function submitForm(formValues: any) {
-  const res = await fetch("https://formzen.io/api/forms/Eg4rQD8Fuv/submit", {
+  const res = await fetch("https://new.formzen.io/api/submission", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
     },
     body: JSON.stringify({
+      formId: "01J4WTF1TCCY0B45VFGAHTT08M",
       data: {
         name: formValues.name,
         email: formValues.email,
         subject: formValues.subject,
         message: formValues.message,
-      },
-      mailSettings: {
-        replyTo: formValues.email
       }
     })
   });
