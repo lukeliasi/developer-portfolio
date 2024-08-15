@@ -1,4 +1,5 @@
 ---
+import { yearsInIndustry } from "../js/yearsInIndustry";
 import LatestPosts from "./LatestPosts.astro";
 import NewsletterSignupForm from "./NewsletterSignupForm.astro";
 import Socials from "./Socials.astro";
@@ -7,9 +8,9 @@ import Socials from "./Socials.astro";
 <aside class="sidebar">
   <div class="sidebar-inner">
     <div class="profile">
-      <img width="75" class="profile-pic" src="/images/profile-pic.jpg" alt="Luke Liasi profile picture" />
+      <img width="75" class="profile-pic" src="/images/profile-pic.jpg" alt="Cristian Ionut Olteanu profile picture" />
       <div class="intro-socials">
-        <p class="intro">I'm Luke, a Senior Software Developer with over 10 years of experience building software.</p>
+        <p class="intro">I'm Cristian, a Software Developer with over {yearsInIndustry} years of experience building software.</p>
         <Socials
           showText={false}
           iconSize="1.5rem"

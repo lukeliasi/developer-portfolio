@@ -5,21 +5,21 @@ import DevLogo, { devIcons } from '../components/DevLogo.astro';
 import TimelineItem from "../components/TimelineItem.astro";
 ---
 
-<DefaultLayout documentTitle="About" documentDescription="I'm Luke, a Senior Software Developer based in the UK with over 9 years of experience building software.">
+<DefaultLayout documentTitle="About" documentDescription={`I'm Cristian, a Software Developer with over ${yearsInIndustry} years of experience building software.`}>
   <section class="container">
     <h1 class="main-heading text-swipe-animation" id="greeting">
       <!-- Value inserted via greeting.js -->
     </h1>
     <div class="intro">
-      <p>I'm Luke, a Senior Software Developer based in the UK with over {yearsInIndustry} years of experience building software.</p>
+      <p>I'm Cristian, a Software Developer with over {yearsInIndustry} years of experience building software.</p>
     </div>
 
     <div class="main-section">
-      <img class="profile-photo" src="/images/me.png" alt="Luke Liasi">
+      <img class="profile-photo" src="/images/me.png" alt="Cristian Ionut Olteanu">
       <div class="main-section-text">
-        <p>I am proficient in a variety of technologies including JavaScript, TypeScript, React, HTML, and CSS. I have a keen interest in design and UI/UX, and I also have experience with back end development using Node/Express.js, SQL/NoSQL, and REST/GraphQL.</p>
-        <p>I'm passionate about solving problems and building efficient, organised systems that are fast, performant and accessible to everyone.</p>
-        <p>In my free time, I enjoy activities such as skiing, swimming, running and gaming.</p>
+        <p>Proficient in a variety of technologies including JavaScript, TypeScript, React, HTML, and CSS. I have a keen interest in Developer Expirience.</p>
+        <p>Passionate about solving problems and building efficient, organised systems that are fast, performant and accessible to everyone.</p>
+        <p>In my free time, I enjoy activities such as hiking, traveling and find magical places.</p>
       </div>
     </div>
   </section>
@@ -40,60 +40,50 @@ import TimelineItem from "../components/TimelineItem.astro";
     <h2 class="sub-heading">Experience</h2>
 
     <div class="timeline-items">
+
       <TimelineItem
-        isCurrent
-        company="LondonLink"
+        company="Sectorea"
         workLocation="Remote"
-        title="Senior Software Developer"
-        startDate="May 2021"
-        logo="/images/LondonLink_Logo.svg"
+        title="Web developer"
+        startDate="Mar 2023"
+        logo="/images/Sectorea.png"
         responsibilities={[
-          "Lead front end engineer, designing and implementing new features for the trading platform.",
-          "Implementing real-time websocket interfaces, which help to improve data concurrency/consistency and user experience.",
-          "Developing internal compliance tools which have been recognised by the company's board of directors for significantly improving staff workflows and adherence to regulatory commitments.",
-          "Conducting comprehensive end-to-end testing using tools such as Selenium, Mocha, and Chai to improve software quality, resulting in a reduction of defects and bugs."
+          "Applied all my knowledge of TypeScript, unit testing and architecture to have the best DX and developer journey.",
+          "Applied certain librerias to improve DX and robustness.",
+          "Made some recommendation of how to apply a flow in the application we saved loading screens and rebundant calls.",
+          "Mentoring junior developers by providing technical guidance and support. Implementing best practices and standards for coding and testing, including using linting tools like ESLint, to improve the team's code performance and reliability.",
         ]}
       />
 
       <TimelineItem
-        company="Dodec"
-        workLocation="Remote"
-        title="Senior Software Developer"
-        startDate="Oct 2017"
-        endDate="May 2021"
-        logo="/images/Dodec_Logo.png"
-        responsibilities={[
-          "Project lead responsible for the successful launch of the Tefal UK e-commerce Magento store project, delivering the project on time and within budget. Duties include maintaining strict timelines and deadlines, and managing multiple cross-company teams and personnel, as well as collaborating with the client to understand their requirements.",
-          "Plan and lead the development of a bespoke medical application that is composed of a Node.js back end and a React.js front end, ensuring strict compliance with security and privacy requirements while coordinating the work of an in-house team.",
-          "Mentoring junior developers by providing technical guidance and support. Implementing best practices and standards for coding and testing, including using linting tools like ESLint and implementing pull-request workflows, to improve the team's code performance and reliability."
-        ]}
-      />
-
-      <TimelineItem
-        company="Dodec"
-        workLocation="Hybrid"
-        title="Software Developer"
-        startDate="Sep 2014"
-        endDate="Oct 2017"
-        logo="/images/Dodec_Logo.png"
-        responsibilities={[
-          "Directing the development of landing pages showcasing new products for household brands, including Tefal and Krups, optimising them for mobile compatibility using responsive design techniques, resulting in increased conversions.",
-          "Designing and developing a streamlined experience for customers to register their GroupeSEB products, creating a scalable API built with Node.js and Express.js, and a MongoDB database capable of handling a high amount of traffic and requests.",
-          "Designing and developing custom WordPress themes and plugins for a range of clients.",
-        ]}
-      />
-
-      <TimelineItem
-        company="Dodec"
+        company="Centauro Rent a Car"
         workLocation="On-Site"
-        title="Junior Software Developer"
-        startDate="Sep 2013"
-        endDate="Sep 2014"
-        logo="/images/Dodec_Logo.png"
+        title="Software Developer"
+        startDate="Sep 2022"
+        endDate="Mar 2023"
+        logo="/images/Centauro.png"
         responsibilities={[
-          "Assisting in designing and developing static websites using HTML, CSS, and JavaScript.",
-          "Experience working on a Ruby on Rails project for a large-scale employment platform, implementing key features and enhancements while developing a deep understanding of the Ruby on Rails framework and its capabilities.",
-          "Providing technical support and guidance to non-technical staff, helping them to understand and use the company's web-based software platform more effectively by creating a series of training materials and tutorials.",
+          "Learned to develop pages and components using TDD, testing the full funcionality of them.",
+          "Managed to develop an Excel-like table without using external libraries.",
+          "Acquired an in-depth knowledge of react hooks.",
+          "Improved the robustness of the applications by improving their typing, with different assertion methods and mappings.",
+          "Improved the DX and the developer journey in the applications with small details.",
+        ]}
+      />
+
+      <TimelineItem
+        company="Lynx View"
+        workLocation="Hybrid"
+        title="Web Developer"
+        startDate="Apr 2021"
+        endDate="Sep 2022"
+        logo="/images/LynxView.png"
+        responsibilities={[
+          "Development of reusable components using React, Angular and Vue",
+          "Making the UX/UI design a reality",
+          "HTML, CSS, Sass, TypeScript and JavaScript development",
+          "Expirience with Agile methodologies",
+          "Working with a team of developers to deliver projects on time and within budget",
         ]}
       />
     </div>
@@ -185,8 +175,10 @@ import TimelineItem from "../components/TimelineItem.astro";
   }
 </style>
 
-<script hoist>
-  import { greeting } from "../js/greeting";
-  const greetingContainer = document.getElementById("greeting");
-  greetingContainer.innerText = greeting();
-</script>
+  <script>
+    import { greeting } from "../js/greeting";
+    const greetingContainer = document.getElementById("greeting");
+    if (greetingContainer) {
+      greetingContainer.innerText = greeting();
+    }
+  </script>

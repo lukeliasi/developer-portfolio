@@ -4,6 +4,6 @@
  */
 import { differenceInYears } from "./differenceInYears";
 
-const careerStartDate = "2013-09-01";
+const careerStartDate = "2021-03-01";
 
 export const yearsInIndustry = differenceInYears(new Date(careerStartDate), new Date());
