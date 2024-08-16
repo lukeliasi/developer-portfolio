@@ -1,5 +1,5 @@
-# lukeliasi.com
-Source code for my personal website [lukeliasi.com](http://lukeliasi.com).
+# crision-olt.com
+Source code for my personal website [crision-olt.com](http://crision-olt.com).
 
 ## 🛠️ Built with
 - [Astro](https://astro.build/)
@@ -18,7 +18,7 @@ All commands are run from the root of the project, from a terminal:
 | `npm run astro --help` | Get help using the Astro CLI                     |
 
 ## License
-Project licensed under the MIT License (see the [LICENSE.md](https://github.com/lukeliasi/lukeliasi.com/blob/main/LICENSE.md) file for details).
+Project licensed under the MIT License (see the [LICENSE.md](https://github.com/crision-olt/portfolio/blob/main/LICENSE.md) file for details).
 
 This project is open source for educational purposes. Feel free to take inspiration, but it should not be used as a template to copy. You may use parts of the codebase for your own website, however do not use the code in its entirety.
 

@@ -37,10 +37,6 @@ function shouldLoadAnalytics() {
   <meta property="og:description" content={documentDescription} />
   <meta property="og:type" content="website" />
   <meta property="og:url" content={site_url + (canonical || "")} />
-
-  {shouldLoadAnalytics() && (
-    <script defer src="https://analytics.lukeliasi.com/getinfo" data-website-id="8fcf015d-55ce-4f7c-a4b4-4c8d000ecb9c"></script>
-  )}
 </head>
 
 <style lang="scss">
