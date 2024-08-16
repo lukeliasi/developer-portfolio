@@ -39,4 +39,8 @@ export type Skills =
   | "Testing Library"
   | "React Router"
   | "Webpack"
+  | "Webstorm"
+  | "VS Code"
+  | "Yarn"
+  | "Sonar Qube"
 
