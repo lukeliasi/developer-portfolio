@@ -24,7 +24,6 @@ const publishedAtDateFriendly = friendlyDate(frontmatter.publishedAt);
     documentTitle={frontmatter.title}
     documentDescription={frontmatter.excerpt}
     canonical={frontmatter.url}
-    ogimage={import.meta.env.PUBLIC_SITE_URL + frontmatter.image.url}
   />
   <body class="page">
     <Header />
@@ -172,18 +171,17 @@ const publishedAtDateFriendly = friendlyDate(frontmatter.publishedAt);
 </style>
 
 <script src="https://giscus.app/client.js"
-  data-repo="lukeliasi/lukeliasi.com"
-  data-repo-id="R_kgDOIbHCUQ"
-  data-category="Announcements"
-  data-category-id="DIC_kwDOIbHCUc4CWKCu"
-  data-mapping="title"
-  data-strict="0"
-  data-reactions-enabled="1"
-  data-emit-metadata="0"
-  data-input-position="top"
-  data-theme="dark"
-  data-lang="en"
-  data-loading="lazy"
-  crossorigin="anonymous"
-  async>
+        data-repo="crision-olt/portfolio"
+        data-repo-id="R_kgDOMjlptw"
+        data-category="General"
+        data-category-id="DIC_kwDOMjlpt84Cht1c"
+        data-mapping="title"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="preferred_color_scheme"
+        data-lang="es"
+        crossorigin="anonymous"
+        async>
 </script>

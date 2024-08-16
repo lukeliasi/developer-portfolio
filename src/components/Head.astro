@@ -3,7 +3,6 @@ interface Props {
   canonical?: string;
   documentTitle: string;
   documentDescription?: string;
-  ogimage?: string;
 }
 
 import "../styles/reset.css";
@@ -16,13 +15,11 @@ import { yearsInIndustry } from "../js/yearsInIndustry";
 const title = import.meta.env.PUBLIC_SITE_NAME;
 const defaultDesc = `Software developer, passionate about solving problems with code. Over ${yearsInIndustry} years of industry experience specialising in JavaScript, React & Node.`;
 const site_url = Astro.site;
-const site_domain = import.meta.env.PUBLIC_SITE_DOMAIN;
 
 // Props
 const canonical = Astro.props.canonical || undefined;
 const documentTitle = Astro.props.documentTitle || title;
 const documentDescription = Astro.props.documentDescription || defaultDesc;
-const ogimage = Astro.props.ogimage || site_url + "images/ogimage.png";
 
 function shouldLoadAnalytics() {
   return import.meta.env.MODE === 'production';
@@ -40,7 +37,6 @@ function shouldLoadAnalytics() {
   <meta property="og:description" content={documentDescription} />
   <meta property="og:type" content="website" />
   <meta property="og:url" content={site_url + (canonical || "")} />
-  <meta property="og:image" content={ogimage} />
 
   {shouldLoadAnalytics() && (
     <script defer src="https://analytics.lukeliasi.com/getinfo" data-website-id="8fcf015d-55ce-4f7c-a4b4-4c8d000ecb9c"></script>
