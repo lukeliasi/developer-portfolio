@@ -52,7 +52,7 @@ function newsletterSignupFormInit(formClass: string) {
       try {
         const data = await submitForm(formValues);
 
-        if (data.status === "success") {
+        if (data.status === "ok") {
           successMessage.style.display = "block";
           newsletterSignupForm.reset();
         } else {
