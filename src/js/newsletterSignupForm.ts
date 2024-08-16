@@ -13,10 +13,10 @@ function newsletterSignupFormInit(formClass: string) {
     if (isLoading) {
       submitButton.setAttribute("disabled", "");
       submitButtonLoadingSpinner.style.display = "block";
-    } else {
-      submitButton.removeAttribute("disabled");
-      submitButtonLoadingSpinner.style.display = "none";
+      return;
     }
+    submitButton.removeAttribute("disabled");
+    submitButtonLoadingSpinner.style.display = "none";
   }
 
   async function submitForm(formValues: any) {

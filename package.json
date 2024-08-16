@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@astrojs/mdx": "3.0.0",
+    "airtable": "^0.12.2",
     "astro": "4.8.6",
     "astro-script": "^0.1.1",
     "mdast-util-to-string": "4.0.0",

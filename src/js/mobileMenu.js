@@ -11,12 +11,13 @@ if (toggleButton) {
       menu.classList.remove("menu-open");
       menuBurgerIcon.style.display = "block";
       menuCloseIcon.style.display = "none";
-    } else {
-      // Open menu
-      document.body.classList.add("menu-open");
-      menu.classList.add("menu-open");
-      menuCloseIcon.style.display = "block";
-      menuBurgerIcon.style.display = "none";
+      return;
     }
+    
+    // Open menu
+    document.body.classList.add("menu-open");
+    menu.classList.add("menu-open");
+    menuCloseIcon.style.display = "block";
+    menuBurgerIcon.style.display = "none";
   });
 }

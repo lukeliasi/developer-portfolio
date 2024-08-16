@@ -1,3 +1,5 @@
+import { createContact, type ContactForm } from "./contactAirtable";
+
 /**
  * Handle AJAX submit of contact form
  * Contact me for access to the FormZen form service
@@ -9,30 +11,15 @@ function setLoadingState(isLoading: boolean) {
   if (isLoading) {
     submitButton.setAttribute("disabled", "");
     submitButtonLoadingSpinner.style.display = "block";
-  } else {
-    submitButton.removeAttribute("disabled");
-    submitButtonLoadingSpinner.style.display = "none";
+    return;
   }
+
+  submitButton.removeAttribute("disabled");
+  submitButtonLoadingSpinner.style.display = "none";
 }
 
-async function submitForm(formValues: any) {
-  const res = await fetch("https://new.formzen.io/api/submission", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      form_id: "01J4WTF1TCCY0B45VFGAHTT08M",
-      data: {
-        name: formValues.name,
-        email: formValues.email,
-        subject: formValues.subject,
-        message: formValues.message,
-      }
-    })
-  });
-
-  return await res.json();
+async function submitForm(formValues: ContactForm) {
+  return await createContact(formValues);
 }
 
 export function handleContactFormSubmit() {
@@ -53,14 +40,10 @@ export function handleContactFormSubmit() {
       setLoadingState(true);
 
       try {
-        const data = await submitForm(formValues);
+        submitForm(formValues as ContactForm);
 
-        if (data.status === "ok") {
-          successMessage.style.display = "block";
-          contactForm.reset();
-        } else {
-          errorMessage.style.display = "block";
-        }
+        successMessage.style.display = "block";
+        contactForm.reset();
       } catch (error) {
         errorMessage.style.display = "block";
       } finally {
