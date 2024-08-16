@@ -34,7 +34,7 @@ const months = monthDifference;
 ---
 
 <div class={`timeline-item ${isCurrent ? "active" : ""}`}>
-  <img class="logo" width="40px" height="40px" src={logo} alt={company} />
+  <img class="logo" width="60px" height="60px" src={logo} alt={company} />
   <div class="details">
     <div class="title">{title} <span class="sep">/</span> <span class="company">{company}</span> <span class="sep">/</span> <span class={`location ${workLocation}`}>{workLocation}</span></div>
     <p class="time">
@@ -124,6 +124,7 @@ const months = monthDifference;
     background: white;
     padding: 5px;
     border-radius: 4px;
+    object-fit: contain;
   }
 
   .responsibilities {
