@@ -20,3 +20,5 @@ pnpm-debug.log*
 
 src/data/*
 /.astro
+
+.idea
