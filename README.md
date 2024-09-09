@@ -1,3 +1,6 @@
+> [!NOTE]  
+> While this repository remains open source, the current version of my website is now closed source. The purpose of open-sourcing was to inspire original creations, but it became apparent that many were using it more as a template, making it difficult to maintain the uniqueness of my portfolio. This repository contains the last open-source version of the site.
+
 # lukeliasi.com
 Source code for my personal website [lukeliasi.com](http://lukeliasi.com).
 
