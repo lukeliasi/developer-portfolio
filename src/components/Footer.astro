@@ -37,7 +37,6 @@ const copywriteYears = currentYear === websiteLaunchYear ? currentYear : `${webs
     display: flex;
     justify-content: space-between;
     margin-top: auto;
-    padding: 1.5rem 0;
     width: 100%;
     p {
       font-size: var(--font-size-sm);
@@ -54,6 +53,7 @@ const copywriteYears = currentYear === websiteLaunchYear ? currentYear : `${webs
     align-items: center;
     padding: 0;
     column-gap: 0.75rem;
+    margin-top: 35px;
     list-style-type: none;
     li {
       color: var(--color-mint);
@@ -74,6 +74,12 @@ const copywriteYears = currentYear === websiteLaunchYear ? currentYear : `${webs
       font-size: var(--font-size-xs);
       line-height: 1.25rem;
       margin: 0;
+    }
+  }
+
+  @media screen and (max-width: 698px) {
+    .social-icon-list {
+      margin-top: 5px;
     }
   }
 </style>
