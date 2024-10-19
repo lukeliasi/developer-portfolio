@@ -1,37 +1,50 @@
 ---
-import type { Skills } from '../types';
-
-export const devIcons: { title: Skills, filePath: string }[] = [
-  { "title": "JavaScript", "filePath": "/images/dev-logos/javascript.svg" },
-  { "title": "TypeScript", "filePath": "/images/dev-logos/typescript.svg" },
-  { "title": "React", "filePath": "/images/dev-logos/react.svg" },
-  { "title": "Next.js", "filePath": "/images/dev-logos/nextjs.png" },
-  { "title": "Redux", "filePath": "/images/dev-logos/redux.svg"},
-  { "title": "GraphQL", "filePath": "/images/dev-logos/graphql.svg"},
-  { "title": "Zod", "filePath": "/images/dev-logos/zod.svg"},
-  { "title": "Vite", "filePath": "/images/dev-logos/vite.svg"},
-  { "title": "Vitest", "filePath": "/images/dev-logos/vitest.svg"},
-  { "title": "Webpack", "filePath": "/images/dev-logos/webpack.svg"},
-  { "title": "Jest", "filePath": "/images/dev-logos/jest.svg"},
-  { "title": "React Query", "filePath": "/images/dev-logos/react-query.svg"},
-  { "title": "Apollo", "filePath": "/images/dev-logos/apollo.svg"},
-  { "title": "React Router", "filePath": "/images/dev-logos/react-router.svg"},
-  { "title": "Testing Library", "filePath": "/images/dev-logos/testing-library.svg"},
-  { "title": "Astro", "filePath": "/images/dev-logos/astro.png" },
-  { "title": "Node.js", "filePath": "/images/dev-logos/nodejs.svg" },
-  { "title": "HTML", "filePath": "/images/dev-logos/html.svg" },
-  { "title": "CSS", "filePath": "/images/dev-logos/css.svg" },
-  { "title": "Sass", "filePath": "/images/dev-logos/sass.svg" },
-  { "title": "Tailwind CSS", "filePath": "/images/dev-logos/tailwind.svg" },
-  { "title": "Linux", "filePath": "/images/dev-logos/linux.svg" },
-  { "title": "Docker", "filePath": "/images/dev-logos/docker.svg" },
-  { "title": "Git", "filePath": "/images/dev-logos/git.svg" },
-  { "title": "Figma", "filePath": "/images/dev-logos/figma.svg" },
-  { "title": "Sonar Qube", filePath: "/images/dev-logos/sonar-qube.svg"},
-  { "title": "VS Code", filePath: "/images/dev-logos/vs-code.svg"},
-  { "title": "Webstorm", filePath: "/images/dev-logos/webstorm.svg"},
-  { "title": "Yarn", filePath: "/images/dev-logos/yarn.svg"},
-];
+import { Skills } from '../types';
+export const devIcons: Record<Skills, string> = {
+  [Skills.JavaScript]: "/images/dev-logos/javascript.svg",
+  [Skills.TypeScript]: "/images/dev-logos/typescript.svg",
+  [Skills.React]: "/images/dev-logos/react.svg",
+  [Skills.Nextjs]: "/images/dev-logos/nextjs.png",
+  [Skills.Redux]: "/images/dev-logos/redux.svg",
+  [Skills.GraphQL]: "/images/dev-logos/graphql.svg",
+  [Skills.Zod]: "/images/dev-logos/zod.svg",
+  [Skills.Vite]: "/images/dev-logos/vite.svg",
+  [Skills.Vitest]: "/images/dev-logos/vitest.svg",
+  [Skills.Webpack]: "/images/dev-logos/webpack.svg",
+  [Skills.Jest]: "/images/dev-logos/jest.svg",
+  [Skills.ReactQuery]: "/images/dev-logos/react-query.svg",
+  [Skills.Apollo]: "/images/dev-logos/apollo.svg",
+  [Skills.ReactRouter]: "/images/dev-logos/react-router.svg",
+  [Skills.TestingLibrary]: "/images/dev-logos/testing-library.svg",
+  [Skills.Astro]: "/images/dev-logos/astro.png",
+  [Skills.Nodejs]: "/images/dev-logos/nodejs.svg",
+  [Skills.HTML]: "/images/dev-logos/html.svg",
+  [Skills.CSS]: "/images/dev-logos/css.svg",
+  [Skills.Sass]: "/images/dev-logos/sass.svg",
+  [Skills.TailwindCSS]: "/images/dev-logos/tailwind.svg",
+  [Skills.Linux]: "/images/dev-logos/linux.svg",
+  [Skills.Docker]: "/images/dev-logos/docker.svg",
+  [Skills.Git]: "/images/dev-logos/git.svg",
+  [Skills.Figma]: "/images/dev-logos/figma.svg",
+  [Skills.SonarQube]: "/images/dev-logos/sonar-qube.svg",
+  [Skills.VSCode]: "/images/dev-logos/vs-code.svg",
+  [Skills.Webstorm]: "/images/dev-logos/webstorm.svg",
+  [Skills.Yarn]: "/images/dev-logos/yarn.svg",
+  [Skills.AdobePhotoshop]: "/images/dev-logos/ps.svg",
+  [Skills.AdobeXD]: "/images/dev-logos/xd.svg",
+  [Skills.AWS]: "/images/dev-logos/aws.svg",
+  [Skills.Directus]: "/images/dev-logos/directus.svg",
+  [Skills.Mocha]: "/images/dev-logos/mocha.svg",
+  [Skills.MongoDB]: "/images/dev-logos/mongodb.svg",
+  [Skills.MySQL]: "/images/dev-logos/mysql.svg",
+  [Skills.PostgreSQL]: "/images/dev-logos/postgresql.svg",
+  [Skills.PHP]: "/images/dev-logos/php.svg",
+  [Skills.Python]: "/images/dev-logos/python.svg",
+  [Skills.Redis]: "/images/dev-logos/redis.svg",
+  [Skills.SanityCMS]: "/images/dev-logos/sanitycms.png",
+  [Skills.Selenium]: "/images/dev-logos/selenium.svg",
+  [Skills.WordPress]: "/images/dev-logos/wordpress.svg",
+}
 
 interface Props {
   icon: Skills;
@@ -40,7 +53,7 @@ interface Props {
 
 const { icon, size = 60 } = Astro.props;
 
-const logo = devIcons.find(devIcon => devIcon.title === icon);
+const logo = devIcons[icon];
 
 if (!logo) {
   throw new Error(`${icon} does not exist in devIcons`);
@@ -49,9 +62,9 @@ if (!logo) {
 
 <img
   class="devicon"
-  src={logo.filePath}
-  alt={logo.title}
-  title={logo.title}
+  src={logo}
+  alt={icon}
+  title={icon}
   width={size + "px"}
   height={size + "px"}
 />

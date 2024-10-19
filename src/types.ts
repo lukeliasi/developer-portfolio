@@ -1,46 +1,47 @@
-export type Skills =
-  | "Adobe Illustrator"
-  | "Adobe Photoshop"
-  | "Adobe XD"
-  | "Astro"
-  | "AWS"
-  | "CSS"
-  | "Directus"
-  | "Docker"
-  | "Figma"
-  | "Git"
-  | "HTML"
-  | "JavaScript"
-  | "Linux"
-  | "Mocha"
-  | "MongoDB"
-  | "MySQL"
-  | "Next.js"
-  | "Node.js"
-  | "PHP"
-  | "PostgreSQL"
-  | "Python"
-  | "React"
-  | "Redis"
-  | "SanityCMS"
-  | "Sass"
-  | "Selenium"
-  | "Tailwind CSS"
-  | "TypeScript"
-  | "WordPress"
-  | "Redux"
-  | "GraphQL"
-  | "Jest"
-  | "Apollo"
-  | "Zod"
-  | "Vite"
-  | "Vitest"
-  | "React Query"
-  | "Testing Library"
-  | "React Router"
-  | "Webpack"
-  | "Webstorm"
-  | "VS Code"
-  | "Yarn"
-  | "Sonar Qube"
 
+
+export enum Skills {
+  "AdobePhotoshop" = "Adobe Photoshop",
+  "AdobeXD" = "Adobe XD",
+  "Astro" = "Astro",
+  "AWS" = "AWS",
+  "CSS" = "CSS",
+  "Directus" = "Directus",
+  "Docker" = "Docker",
+  "Figma" = "Figma",
+  "Git" = "Git",
+  "HTML" = "HTML",
+  "JavaScript" = "JavaScript",
+  "Linux" = "Linux",
+  "Mocha" = "Mocha",
+  "MongoDB" = "MongoDB",
+  "MySQL" = "MySQL",
+  "Nextjs" = "Next.js",
+  "Nodejs" = "Node.js",
+  "PHP" = "PHP",
+  "PostgreSQL" = "PostgreSQL",
+  "Python" = "Python",
+  "React" = "React",
+  "Redis" = "Redis",
+  "SanityCMS" = "SanityCMS",
+  "Sass" = "Sass",
+  "Selenium" = "Selenium",
+  "TailwindCSS" = "Tailwind CSS",
+  "TypeScript" = "TypeScript",
+  "WordPress" = "WordPress",
+  "Redux" = "Redux",
+  "GraphQL" = "GraphQL",
+  "Jest" = "Jest",
+  "Apollo" = "Apollo",
+  "Zod" = "Zod",
+  "Vite" = "Vite",
+  "Vitest" = "Vitest",
+  "ReactQuery" = "React Query",
+  "TestingLibrary" = "Testing Library",
+  "ReactRouter" = "React Router",
+  "Webpack" = "Webpack",
+  "Webstorm" = "Webstorm",
+  "VSCode" = "VS Code",
+  "Yarn" = "Yarn",
+  "SonarQube" = "Sonar Qube"
+}
