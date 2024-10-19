@@ -11,17 +11,17 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/mdx": "3.0.0",
+    "@astrojs/mdx": "3.1.8",
     "airtable": "^0.12.2",
-    "astro": "4.8.6",
+    "astro": "4.16.6",
     "astro-script": "^0.1.1",
     "mdast-util-to-string": "4.0.0",
     "reading-time": "1.5.0",
     "tippy.js": "6.3.7"
   },
   "devDependencies": {
-    "autoprefixer": "10.4.19",
-    "cssnano": "7.0.1",
-    "sass": "1.77.2"
+    "autoprefixer": "10.4.20",
+    "cssnano": "7.0.6",
+    "sass": "1.80.3"
   }
 }
