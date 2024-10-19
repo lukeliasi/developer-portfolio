@@ -20,12 +20,13 @@ function newsletterSignupFormInit(formClass: string) {
   }
 
   async function submitForm(formValues: any) {
-    const res = await fetch("https://formzen.io/api/forms/K7S8JH4ZQ1/submit", {
+    const res = await fetch("https://new.formzen.io/api/submission", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
+        form_id: "01J4WTF1VFA7MMNAJPEXSX554K",
         data: {
           email: formValues.email,
           page: formValues.page,
@@ -51,7 +52,7 @@ function newsletterSignupFormInit(formClass: string) {
       try {
         const data = await submitForm(formValues);
 
-        if (data.status === "success") {
+        if (data.status === "ok") {
           successMessage.style.display = "block";
           newsletterSignupForm.reset();
         } else {
